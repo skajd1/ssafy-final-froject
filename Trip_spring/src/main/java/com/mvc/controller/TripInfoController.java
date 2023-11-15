@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mvc.service.TripInfoService;
 import com.mvc.vo.Gugun;
+import com.mvc.vo.Sido;
 import com.mvc.vo.TripInfo;
 
 import io.swagger.annotations.Api;
@@ -25,6 +26,11 @@ public class TripInfoController {
 	@Autowired
 	TripInfoService service;
 	
+	@ApiOperation(value = "시/도 반환하는 메소드")
+	@GetMapping("/sido")
+	public List<Sido> getSidoList(){
+        return service.getSidoList();
+    }
 	
     @ApiOperation(value = "시/도에 해당하는 구/군 정보 반환하는 메소드")
     @GetMapping("/sido/{sido}")
@@ -32,13 +38,12 @@ public class TripInfoController {
     	System.out.println(sidoCode);
         return service.getGugunList(sidoCode);
     }
+    
     @ApiOperation(value = "시/도 및 구/군 및 여행 테마로 필터링 된 여행지 반환")
     @GetMapping("/sido/{sido}/gugun/{gugun}/type/{type}")
     public List<TripInfo> searchBySidoGugunType(@PathVariable("sido") String sidoCode, @PathVariable("gugun") String gugunCode, @PathVariable("type") String typeId){
 		return service.searchBySidoGugunType(sidoCode, gugunCode, typeId);
-    	
     }
-    
 	
 	@ApiOperation(value="전체 관광지 리스트",notes="모든 여행지 정보를 반환한다")
 	@GetMapping("/all")

@@ -28,7 +28,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
         		.title("Trip Rest Api")
-        		.description("박우철 이재진 전형욱")
+        		.description("박우철 남혜미")
         		.version("1.0")
         		.build();
                 
