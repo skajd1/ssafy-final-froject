@@ -1,13 +1,14 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { getGugun } from "@/api/trip.js";
+import { getGugun, getSido } from "@/api/trip.js";
 const router = useRouter();
 
 const chooseSido = ref("");
 const chooseGugun = ref("");
 const chooseThema = ref("");
 const gugunlist = ref([]);
+const sidolist = ref([]);
 
 watch(chooseSido, () => {
   //sido 코드가 변할 때 마다 비동기로 gugun 리스트 가져와서 gugun 리스트에 저장
@@ -22,25 +23,38 @@ watch(chooseSido, () => {
     }
   );
 });
-const sidolist = ref([
-  { sidoCode: "1", sidoName: "서울특별시" },
-  { sidoCode: "2", sidoName: "부산광역시" },
-  { sidoCode: "3", sidoName: "대구광역시" },
-  { sidoCode: "4", sidoName: "인천광역시" },
-  { sidoCode: "5", sidoName: "광주광역시" },
-  { sidoCode: "6", sidoName: "대전광역시" },
-  { sidoCode: "7", sidoName: "울산광역시" },
-  { sidoCode: "8", sidoName: "세종특별자치시" },
-  { sidoCode: "31", sidoName: "경기도" },
-  { sidoCode: "32", sidoName: "강원도" },
-  { sidoCode: "33", sidoName: "충청북도" },
-  { sidoCode: "34", sidoName: "충청남도" },
-  { sidoCode: "35", sidoName: "경상북도" },
-  { sidoCode: "36", sidoName: "경상남도" },
-  { sidoCode: "37", sidoName: "전라북도" },
-  { sidoCode: "38", sidoName: "전라남도" },
-  { sidoCode: "39", sidoName: "제주특별자치도" },
-]);
+
+onMounted(() => {
+  getSido(
+    (res) => {
+      console.log(res.data);
+      sidolist.value = res.data;
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+});
+
+// const sidolist = ref([
+//   { sidoCode: "1", sidoName: "서울특별시" },
+//   { sidoCode: "2", sidoName: "인천광역시" },
+//   { sidoCode: "3", sidoName: "대전광역시" },
+//   { sidoCode: "4", sidoName: "부산광역시" },
+//   { sidoCode: "5", sidoName: "광주광역시" },
+//   { sidoCode: "6", sidoName: "대구광역시" },
+//   { sidoCode: "7", sidoName: "울산광역시" },
+//   { sidoCode: "8", sidoName: "세종특별자치시" },
+//   { sidoCode: "31", sidoName: "경기도" },
+//   { sidoCode: "32", sidoName: "강원도" },
+//   { sidoCode: "33", sidoName: "충청북도" },
+//   { sidoCode: "34", sidoName: "충청남도" },
+//   { sidoCode: "35", sidoName: "경상북도" },
+//   { sidoCode: "36", sidoName: "경상남도" },
+//   { sidoCode: "37", sidoName: "전라북도" },
+//   { sidoCode: "38", sidoName: "전라남도" },
+//   { sidoCode: "39", sidoName: "제주특별자치도" },
+// ]);
 
 const themalist = ref([
   { themaCode: "12", themaName: "관광지" },
@@ -79,8 +93,8 @@ function customerSearch() {
         <div class="form-group">
           <label for="sido"> 시/도 선택 : </label>
           <select class="form-control" id="sido" v-model="chooseSido">
-            <option v-for="sido in sidolist" :key="sido.sidoCode" :value="sido.sidoCode">
-              {{ sido.sidoName }}
+            <option v-for="sido in sidolist" :key="sido.sido_code" :value="sido.sido_code">
+              {{ sido.sido_name }}
             </option>
           </select>
         </div>
@@ -93,13 +107,22 @@ function customerSearch() {
           </select>
         </div>
 
-        <div class="form-group">
-          <label for="thema">테마:</label>
+        <div class="form-group thema">
+          <div v-for="(thema, index) in themalist" :key="thema.themaCode">
+            <input
+              type="radio"
+              :id="thema.themaCode"
+              v-model="chooseThema"
+              :value="thema.themaCode"
+            />
+            <label :for="thema.themaCode">{{ thema.themaName }}</label>
+          </div>
+          <!-- <label for="thema">테마:</label>
           <select class="form-control" id="thema" v-model="chooseThema">
             <option v-for="thema in themalist" :key="thema.themaCode" :value="thema.themaCode">
               {{ thema.themaName }}
             </option>
-          </select>
+          </select> -->
         </div>
 
         <div class="btn-group">
@@ -117,4 +140,8 @@ function customerSearch() {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.thema {
+  display: inline;
+}
+</style>
