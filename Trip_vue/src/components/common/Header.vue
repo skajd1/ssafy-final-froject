@@ -12,10 +12,11 @@ if (c < 0.7) {
 </script>
 <template>
   <div>
-    <RouterLink :to="{ name: 'Main' }">
-      <img v-if="l === 0" class="logo" src="@/assets/logo0.png" alt="logo" />
-      <img v-else-if="l === 1" class="logo" src="@/assets/logo1.png" alt="logo" />
+    <RouterLink :to="{ name: 'Home' }">
+      <img v-if="l === 0" class="logo" src="@/assets/logo0.svg" alt="logo" />
+      <img v-else-if="l === 1" class="logo" src="@/assets/logo1.svg" alt="logo" />
     </RouterLink>
+
     <nav>
       <RouterLink :to="{ name: 'Main' }">메인 화면</RouterLink>
       <RouterLink :to="{ name: 'TripSelect' }">여행지 등록</RouterLink>
@@ -28,11 +29,11 @@ if (c < 0.7) {
 <style scoped>
 div {
   display: flex;
-  justify-content: space-between;
+
   align-items: center;
   padding: 1rem;
-  background-color: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
+
+  /* border-bottom: 1px solid var(--color-border); */
 }
 .logo {
   width: 110px;
