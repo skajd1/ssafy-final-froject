@@ -1,4 +1,5 @@
 <script setup>
+import { defineProps } from "vue";
 defineProps({
   img: String,
 });
@@ -12,15 +13,11 @@ defineProps({
 
 <style scoped>
 .item {
-  min-width: 300px;
-  height: 200px;
-  border: 1px solid gray;
-  margin: 0 5px;
+  min-width: 100%;
+  height: 400px;
 
+  margin: 0 5px;
+  margin-bottom: 1rem;
   text-align: center;
-}
-img {
-  width: 100%;
-  height: 100%;
 }
 </style>
