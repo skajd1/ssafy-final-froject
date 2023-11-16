@@ -1,41 +1,25 @@
 <script setup>
-import { ref, onMounted } from "vue";
-import CustomerListItem from "./CustomerListItem.vue";
-import { selectAll } from "../api/customer.js";
-const customers = ref([]);
-
-onMounted(() => {
-  getAll();
-});
-function getAll() {
-  selectAll(
+import PlanListItem from "@/components/Plan/PlanListItem.vue";
+import { getMyPlans } from "@/api/trip.js";
+import { ref, reactive } from "vue";
+const items = ref([]);
+const uid = ref(1);
+function getItems() {
+  getMyPlans(
+    uid.value,
     (res) => {
-      customers.value = res.data;
+      items.value = res.data;
     },
-    (e) => {
-      console.log(e);
+    (err) => {
+      console.log(err);
     }
   );
 }
+getItems();
 </script>
 <template>
-  <div>
-    <div class="container">
-      <slot></slot>
-      <table class="table text-center">
-        <thead>
-          <tr>
-            <th class="text-center">번호</th>
-            <th class="text-center">이름</th>
-            <!-- <th class="text-center">주소</th> -->
-          </tr>
-        </thead>
-        <tbody id="tb">
-          <CustomerListItem v-for="customer in customers" :c="customer" />
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <div>내 계획들 확인하는 뷰에용</div>
+  <PlanListItem v-for="item in items" :item="item" :key="item.pid" />
 </template>
 
 <style scoped></style>

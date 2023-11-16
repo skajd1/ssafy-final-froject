@@ -1,7 +1,11 @@
-<script setup></script>
+<script setup>
+import PlanList from "@/components/Plan/PlanList.vue";
+</script>
 
 <template>
-  <div>내 계획들 확인하는 뷰에용</div>
+  <div>
+    <PlanList></PlanList>
+  </div>
 </template>
 
 <style scoped></style>
