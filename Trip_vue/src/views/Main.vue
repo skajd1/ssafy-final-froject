@@ -1,9 +1,10 @@
 <script setup>
-import TheWelcome from "@/components/TheWelcome.vue";
+import mytriplist from "@/components/Main/mytriplist.vue";
+import famouslist from "@/components/Main/famouslist.vue";
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <mytriplist></mytriplist>
+  <famouslist></famouslist>
 </template>
+<style scoped></style>

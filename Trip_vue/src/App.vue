@@ -5,7 +5,6 @@ import Header from "./components/common/Header.vue";
 </script>
 
 <template>
-  <!-- route가 home에선 헤더와 푸터 없에기 -->
   <Header></Header>
 
   <RouterView />
