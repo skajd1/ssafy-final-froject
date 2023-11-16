@@ -61,7 +61,7 @@ function customerSearch() {
     return;
   }
 
-  router.push(`/triplist/${chooseSido.value}/${chooseGugun.value}/${chooseThema.value}`);
+  // router.push(`/triplist/${chooseSido.value}/${chooseGugun.value}/${chooseThema.value}`);
 }
 </script>
 

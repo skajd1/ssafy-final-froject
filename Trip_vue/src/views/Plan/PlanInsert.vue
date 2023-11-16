@@ -1,12 +1,12 @@
 <script setup>
 import kmap from "@/components/common/VKakaoMap.vue";
-import PlanInsert from "@/components/Plan/PlanInsert.vue";
+import PlanSideBar from "@/components/Plan/PlanSidebar.vue";
 </script>
 
 <template>
   <div>계획 등록 뷰</div>
   <div class="plan">
-    <PlanInsert />
+    <PlanSideBar />
     <kmap></kmap>
   </div>
 </template>
