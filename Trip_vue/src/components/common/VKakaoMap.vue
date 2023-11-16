@@ -110,6 +110,5 @@ const initMap = () => {
   width: 80%;
   height: 800px;
   margin-left: 1rem;
-  margin-right: 1rem;
 }
 </style>
