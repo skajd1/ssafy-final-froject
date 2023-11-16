@@ -10,5 +10,8 @@ function getGugun(sidocode, success, fail) {
 function getTripInfo(sidoCode, gugunCode, typeid, success, fail) {
   myaxios.get(`/trip/sido/${sidoCode}/gugun/${gugunCode}/type/${typeid}`).then(success).catch(fail);
 }
+function getMyPlans(uid, success, fail) {
+  myaxios.get(`/plan/${uid}`).then(success).catch(fail);
+}
 
-export { getGugun, getTripInfo, getSido };
+export { getGugun, getTripInfo, getSido, getMyPlans };

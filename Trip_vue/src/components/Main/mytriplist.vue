@@ -1,5 +1,5 @@
 <script setup>
-import listitem from "@/components/Main/listitem.vue";
+import listitem from "@/components/Main/ListItem.vue";
 const item = 30;
 // 임시 이미지
 const img = "https://picsum.photos/800/400?random=";
@@ -16,7 +16,7 @@ const img = "https://picsum.photos/800/400?random=";
 
 <style scoped>
 .container {
-  width: 70%;
+  width: 80%;
   background-color: #f2f2f2;
 
   margin: 0 auto;

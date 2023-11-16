@@ -1,15 +1,15 @@
 <script setup>
-import { ref } from "vue";
-defineProps({ c: Object });
+defineProps({
+  item: Object,
+});
 </script>
 
 <template>
-  <tr>
-    <td>{{ c.num }}</td>
-    <td>
-      <RouterLink :to="{ name: 'detail', params: { num: c.num } }"> {{ c.name }}</RouterLink>
-    </td>
-  </tr>
+  <div>
+    <div>{{ item.pid }}</div>
+    <div>{{ item.title }}</div>
+    <div>{{ item.uid }}</div>
+  </div>
 </template>
 
 <style scoped></style>

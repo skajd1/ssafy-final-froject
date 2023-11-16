@@ -1,5 +1,5 @@
 <script setup>
-import flistitem from "@/components/Main/flistitem.vue";
+import flistitem from "@/components/Main/FListItem.vue";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
@@ -40,7 +40,7 @@ const img = "https://picsum.photos/800/400?random=";
 
 <style scoped>
 .container {
-  width: 70%;
+  width: 80%;
   background-color: #f2f2f2;
 
   margin: 0 auto;

@@ -1,7 +1,11 @@
 <script setup></script>
 
 <template>
-  <div>공유 게시판 글 쓰는 곳</div>
+  <div class="container">
+    <div class="selectbox">
+      <span>공유할 일정을 선택해 주세요!</span>
+    </div>
+  </div>
 </template>
 
 <style scoped></style>

@@ -1,6 +1,6 @@
 <script setup>
-import mytriplist from "@/components/Main/mytriplist.vue";
-import famouslist from "@/components/Main/famouslist.vue";
+import mytriplist from "@/components/Main/MyTripList.vue";
+import famouslist from "@/components/Main/FamousList.vue";
 </script>
 
 <template>
