@@ -1,10 +1,10 @@
 <script setup>
-import PlanList from "@/components/Plan/PlanList.vue";
+import PlanMyList from "@/components/Plan/PlanMyList.vue";
 </script>
 
 <template>
   <div>
-    <PlanList></PlanList>
+    <PlanMyList></PlanMyList>
   </div>
 </template>
 
