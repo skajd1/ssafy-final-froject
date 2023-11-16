@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mvc.mapper.PlanMapper">
+	
+	<select id="selectItem" resultType="PlanDetail" parameterType="int">
+		select * from planitem where pid = #{pid}
+	</select>
+	<select id="selectPlanByUid" resultType="Plan" parameterType="int">
+		select * from plan where uid = #{uid}
+	</select>
+	<insert id = "insertPlanByUid" parameterType = "Plan">
+		insert into plan (title, uid) values (#{title} ,#{uid})
+	</insert>
+	<insert id = "insertPlanDetail" parameterType = "PlanDetail">
+		insert into planitem (cost, date, comment, pid, content_id) values (#{cost},#{date},#{comment},#{pid},#{content_id})
+	</insert>
+
+	
+
+</mapper>
