@@ -12,4 +12,9 @@ import Header from "./components/common/Header.vue";
   <!-- <Footer></Footer> -->
 </template>
 
-<style scoped></style>
+<style>
+:root {
+  --main-color: #ffa18d;
+  --main-color-bg: #f5d7cdff;
+}
+</style>

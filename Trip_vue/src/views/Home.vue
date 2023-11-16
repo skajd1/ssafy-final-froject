@@ -16,7 +16,7 @@ h1 {
   font-size: 100px;
   text-align: center;
   margin-top: 2rem;
-  color: #ffa18d;
+  color: var(--main-color);
 }
 #container {
   background-color: var(--vt-c-bg);
@@ -30,7 +30,7 @@ h1 {
   width: 50%;
   height: 50px;
   font-size: 30px;
-  border: 1px solid #ffa18d;
+  border: 1px solid var(--main-color);
   border-radius: 10px;
   text-align: center;
 }

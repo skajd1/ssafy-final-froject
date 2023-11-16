@@ -1,67 +1,112 @@
 <script setup>
+import PlanSearch from "@/components/Plan/PlanSearch.vue";
 import { ref } from "vue";
-import { useRouter } from "vue-router";
-import { insert } from "../api/customer.js";
-const router = useRouter();
 
-const num = ref("");
-const name = ref("");
-const address = ref("");
+const is_expanded = ref(false);
 
-function customerInsert() {
-  insert(
-    { num: num.value, name: name.value, address: address.value },
-    (res) => {
-      if (res.status == 200) router.push("/list");
-    },
-    (e) => {
-      console.log(e);
-    }
-  );
-}
-function customerAll() {
-  router.push("/list");
-}
+const ToggleMenu = () => {
+  is_expanded.value = !is_expanded.value;
+};
 </script>
 
 <template>
-  <div>
-    <div class="container">
-      <slot></slot>
-      <form id="form1" class="form-horizontal">
-        <slot name="list"></slot>
-        <div class="form-group">
-          <label>번호:</label> <input type="text" class="form-control" id="num" v-model="num" />
-        </div>
-        <div class="form-group">
-          <label>이름:</label> <input type="text" class="form-control" id="name" v-model="name" />
-        </div>
-
-        <div class="form-group">
-          <label>주소:</label>
-          <input type="text" class="form-control" id="address" v-model="address" />
-        </div>
-
-        <div class="btn-group">
-          <input
-            type="button"
-            class="btn btn-primary"
-            value="등록"
-            id="btnInsert"
-            @click="customerInsert"
-          />
-          <input
-            type="button"
-            class="btn btn-primary"
-            value="전체"
-            id="btnUpdate"
-            @click="customerAll"
-          />
-          <input type="reset" class="btn btn-primary" value="초기화" id="btnInit" />
-        </div>
-      </form>
+  <aside :class="`${is_expanded && 'is-expanded'}`">
+    <div class="logo">
+      <img src="@/assets/foot.png" alt="search" />
     </div>
-  </div>
+
+    <div class="menu-toggle-wrap">
+      <button class="menu-toggle" @click="ToggleMenu">
+        <span class="material-icons"> keyboard_double_arrow_right </span>
+      </button>
+    </div>
+
+    <div class="menu">
+      <PlanSearch />
+    </div>
+  </aside>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+aside {
+  display: flex;
+  flex-direction: column;
+  width: calc(2rem + 32px);
+  min-height: 75vh;
+  overflow: hidden;
+
+  padding: 1rem;
+
+  background-color: var(--main-color-bg);
+  color: white;
+
+  transition: 0.2s ease-out;
+
+  .logo {
+    margin-bottom: 1rem;
+
+    img {
+      width: 3rem;
+    }
+  }
+
+  .menu-toggle-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+
+    position: relative;
+    top: 0;
+    transition: 0.2s ease-out;
+
+    .menu-toggle {
+      transition: 0.2s ease-out;
+
+      .material-icons {
+        font-size: 2rem;
+        color: white;
+        transition: 0.2s ease-out;
+      }
+
+      &:hover {
+        .material-icons {
+          color: var(--main-color);
+          transform: translateX(0.5rem);
+        }
+      }
+    }
+  }
+
+  .menu {
+    opacity: 0;
+  }
+
+  &.is-expanded {
+    width: 400px;
+
+    .menu-toggle-wrap {
+      top: -3rem;
+      .menu-toggle {
+        transform: rotate(-180deg);
+      }
+    }
+
+    .menu {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* position: fixed; */
+    z-index: 10;
+  }
+}
+
+button {
+  cursor: pointer;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+}
+</style>

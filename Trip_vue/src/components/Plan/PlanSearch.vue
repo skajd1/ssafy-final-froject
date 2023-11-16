@@ -128,4 +128,7 @@ function customerSearch() {
   align-items: center;
   margin-bottom: 20px;
 }
+.container {
+  width: 300px;
+}
 </style>
