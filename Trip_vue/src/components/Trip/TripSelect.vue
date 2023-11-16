@@ -27,34 +27,14 @@ watch(chooseSido, () => {
 onMounted(() => {
   getSido(
     (res) => {
-      console.log(res.data);
       sidolist.value = res.data;
+      console.log(sidolist.value);
     },
     (error) => {
       console.log(error);
     }
   );
 });
-
-// const sidolist = ref([
-//   { sidoCode: "1", sidoName: "서울특별시" },
-//   { sidoCode: "2", sidoName: "인천광역시" },
-//   { sidoCode: "3", sidoName: "대전광역시" },
-//   { sidoCode: "4", sidoName: "부산광역시" },
-//   { sidoCode: "5", sidoName: "광주광역시" },
-//   { sidoCode: "6", sidoName: "대구광역시" },
-//   { sidoCode: "7", sidoName: "울산광역시" },
-//   { sidoCode: "8", sidoName: "세종특별자치시" },
-//   { sidoCode: "31", sidoName: "경기도" },
-//   { sidoCode: "32", sidoName: "강원도" },
-//   { sidoCode: "33", sidoName: "충청북도" },
-//   { sidoCode: "34", sidoName: "충청남도" },
-//   { sidoCode: "35", sidoName: "경상북도" },
-//   { sidoCode: "36", sidoName: "경상남도" },
-//   { sidoCode: "37", sidoName: "전라북도" },
-//   { sidoCode: "38", sidoName: "전라남도" },
-//   { sidoCode: "39", sidoName: "제주특별자치도" },
-// ]);
 
 const themalist = ref([
   { themaCode: "12", themaName: "관광지" },
@@ -93,8 +73,8 @@ function customerSearch() {
         <div class="form-group">
           <label for="sido"> 시/도 선택 : </label>
           <select class="form-control" id="sido" v-model="chooseSido">
-            <option v-for="sido in sidolist" :key="sido.sido_code" :value="sido.sido_code">
-              {{ sido.sido_name }}
+            <option v-for="sido in sidolist" :key="sido.sidoCode" :value="sido.sidoCode">
+              {{ sido.sidoName }}
             </option>
           </select>
         </div>
