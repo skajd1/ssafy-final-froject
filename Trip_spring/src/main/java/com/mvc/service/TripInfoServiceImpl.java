@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.mvc.mapper.TripInfoMapper;
 import com.mvc.vo.Gugun;
+import com.mvc.vo.Sido;
 import com.mvc.vo.TripInfo;
 
 @Service
@@ -43,11 +44,14 @@ public class TripInfoServiceImpl implements TripInfoService{
 	public List<Gugun> getGugunList(String sidoCode) {
 		return mapper.getGugunList(sidoCode);
 	}
+	
+	@Override
+	public List<Sido> getSidoList() {
+		return mapper.getSidoList();
+	}
 
 	@Override
 	public List<TripInfo> searchBySidoGugunType(String sidoCode, String gugunCode, String typeId) {
 		return mapper.getInfoBySidoGugunType(sidoCode,gugunCode,typeId);
 	}
-	
-	
 }

@@ -7,11 +7,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class FinalProject {
+public class finalproject {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FinalProject.class, args);
+		SpringApplication.run(finalproject.class, args);
+		//123123123
 	}
 
 }
-
