@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-<<<<<<< Updated upstream
-	<name>FinalProject</name>
-=======
 	<name>finalproject</name>
->>>>>>> Stashed changes
 	<comment></comment>
 	<projects>
 	</projects>
@@ -43,7 +39,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1700050944706</id>
+			<id>0</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
