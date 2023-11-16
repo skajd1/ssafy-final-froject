@@ -1,6 +1,7 @@
 <script setup>
 import kmap from "@/components/common/VKakaoMap.vue";
 import PlanInsert from "@/components/Plan/PlanInsert.vue";
+import InsertSideBar from "@/components/Plan/InsertSideBar.vue";
 </script>
 
 <template>
@@ -8,6 +9,7 @@ import PlanInsert from "@/components/Plan/PlanInsert.vue";
   <div class="plan">
     <PlanInsert />
     <kmap></kmap>
+    <InsertSideBar />
   </div>
 </template>
 
