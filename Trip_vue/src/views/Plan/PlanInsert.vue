@@ -8,6 +8,7 @@ import PlanSideBar from "@/components/Plan/PlanSidebar.vue";
   <div class="plan">
     <PlanSideBar />
     <kmap></kmap>
+    <InsertSideBar />
   </div>
 </template>
 
