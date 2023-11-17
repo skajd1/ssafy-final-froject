@@ -1,6 +1,7 @@
 <script setup>
 import PlanSearch from "@/components/Plan/PlanSearch.vue";
 import PlanSearchList from "@/components/Plan/PlanSearchList.vue";
+import Search from "@/components/common/Search.vue";
 import { ref } from "vue";
 
 const is_expanded = ref(false);
@@ -23,6 +24,7 @@ const ToggleMenu = () => {
     </div>
 
     <div class="menu">
+      <Search />
       <PlanSearch />
       <PlanSearchList />
     </div>
@@ -81,6 +83,7 @@ aside {
 
   .menu {
     opacity: 0;
+    width: 300px;
   }
 
   &.is-expanded {
