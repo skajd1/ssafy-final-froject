@@ -2,7 +2,6 @@ package com.mvc.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 
 @AllArgsConstructor
 @Data

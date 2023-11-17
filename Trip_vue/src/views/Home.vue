@@ -1,13 +1,13 @@
-<script setup></script>
+<script setup>
+import Search from "@/components/common/Search.vue";
+</script>
 
 <template>
   <div id="container">
     <div id="title">
       <h1>어디로 가냥?<img src="@/assets/logo1.svg" /></h1>
     </div>
-    <div id="search">
-      <input type="text" />
-    </div>
+    <Search></Search>
   </div>
 </template>
 
@@ -21,20 +21,5 @@ h1 {
 #container {
   background-color: var(--vt-c-bg);
   height: 85vh;
-}
-#search {
-  text-align: center;
-  margin-top: 2rem;
-}
-#search input {
-  width: 50%;
-  height: 50px;
-  font-size: 30px;
-  border: 1px solid #ffa18d;
-
-  border-radius: 10px;
-  outline-color: #ffa18d;
-  outline-offset: 2px;
-  text-align: center;
 }
 </style>
