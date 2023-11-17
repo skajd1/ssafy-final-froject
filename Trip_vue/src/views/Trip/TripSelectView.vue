@@ -4,6 +4,7 @@ import TripSelect from "../../components/Trip/TripSelect.vue";
 
 <template>
   <div>여행지를 선택하는 곳이에용</div>
+
   <TripSelect />
 </template>
 
