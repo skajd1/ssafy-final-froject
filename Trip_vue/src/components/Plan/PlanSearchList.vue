@@ -2,7 +2,7 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import item from "@/components/Plan/PlanSearchListItem.vue";
-import { getTripInfo } from "@/api/trip.js";
+import { getTripInfo } from "@/api/TripApi.js";
 const route = useRoute();
 onMounted(() => {
   let sido = route.params.sido;

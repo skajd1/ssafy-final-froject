@@ -8,22 +8,24 @@ import PlanInsertSideBar from "@/components/Plan/PlanInsertSideBar.vue";
   <div>계획 등록 뷰</div>
   <div class="plan">
     <PlanSearchSideBar />
-    <kmap></kmap>
-    <PlanInsertSideBar />
+    <div class="mapbox">
+      <kmap></kmap>
+    </div>
+    <div class="right-sidebar">
+      <PlanInsertSideBar />
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .plan {
   display: flex;
-
-  main {
-    flex: 1 1 0;
-    padding: 2rem;
-
-    @media (max-width: 768px) {
-      padding-left: 6rem;
-    }
-  }
+}
+.mapbox {
+  width: 85%;
+  height: 743px;
+}
+.right-sidebar {
+  align-items: right;
 }
 </style>

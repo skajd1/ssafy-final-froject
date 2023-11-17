@@ -4,7 +4,7 @@ import MyList from "@/components/MyList/MyList.vue";
 
 <template>
   <div>
-    <!-- <MyList /> -->
+    <MyList />
   </div>
 </template>
 

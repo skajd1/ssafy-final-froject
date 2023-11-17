@@ -17,11 +17,12 @@ const img = "https://picsum.photos/800/400?random=";
 <style scoped>
 .container {
   width: 80%;
-  background-color: #f2f2f2;
-
+  background-color: var(--vt-c-bg);
+  color: var(--main-color);
   margin: 0 auto;
   margin-bottom: 1rem;
   padding-bottom: 2rem;
+  border-radius: 10px;
 }
 /* 가로 스크롤바 */
 .itembox {

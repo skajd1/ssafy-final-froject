@@ -107,8 +107,7 @@ const initMap = () => {
 
 <style>
 #map {
-  width: 80%;
-  height: 800px;
-  margin-left: 1rem;
+  width: 100%;
+  height: 100%;
 }
 </style>

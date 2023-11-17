@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from "vue-router";
 defineProps({
   item: Object,
 });
@@ -6,9 +7,9 @@ defineProps({
 
 <template>
   <div>
-    <div>{{ item.pid }}</div>
-    <div>{{ item.title }}</div>
-    <div>{{ item.uid }}</div>
+    <RouterLink :to="{ name: 'MyListDetail', params: { pid: item.pid } }">
+      <div>{{ item.title }}</div>
+    </RouterLink>
   </div>
 </template>
 

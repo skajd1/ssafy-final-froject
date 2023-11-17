@@ -40,6 +40,8 @@ aside {
   overflow: hidden;
 
   padding: 1rem;
+  position: fixed;
+  z-index: 10;
 
   background-color: var(--main-color-bg);
   color: white;
