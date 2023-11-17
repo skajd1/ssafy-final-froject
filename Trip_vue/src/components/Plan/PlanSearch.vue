@@ -101,12 +101,6 @@ function customerSearch() {
             />
             <label :for="thema.themaCode">{{ thema.themaName }}</label>
           </span>
-          <!-- <label for="thema">테마:</label>
-          <select class="form-control" id="thema" v-model="chooseThema">
-            <option v-for="thema in themalist" :key="thema.themaCode" :value="thema.themaCode">
-              {{ thema.themaName }}
-            </option>
-          </select> -->
         </div>
 
         <div class="btn-group">

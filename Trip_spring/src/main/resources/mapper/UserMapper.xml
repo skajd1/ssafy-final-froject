@@ -15,7 +15,7 @@
 		select * from user where id = #{id} and pw = #{pw}
 	</select>
 	<insert id = "insert" parameterType="com.mvc.vo.User">
-		insert into user (id,pw) values(#{id}, #{pw})
+		insert into user (id,pw, nickname) values(#{id}, #{pw}, #{nickname})
 	</insert>
 	<delete id = "delete" parameterType = "String">
 		delete from user where id = #{id}

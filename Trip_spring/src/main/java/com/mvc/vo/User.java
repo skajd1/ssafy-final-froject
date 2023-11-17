@@ -6,12 +6,15 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class User {
+	int uid;
 	String id;
 	String pw;
+	String nickname;
+	String pimgsrc;
+	
 	int admin;
 	public boolean isAdmin() {
 		if (admin == 1) return true;
 		return false;
-		
 	}
 }

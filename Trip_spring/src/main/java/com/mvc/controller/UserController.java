@@ -3,6 +3,7 @@ package com.mvc.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.SessionManager;
 import com.mvc.service.UserService;
 import com.mvc.vo.User;
 
@@ -27,9 +29,9 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "SSAFY")
 public class UserController {
 	
+	private SessionManager sessionManager;
+	
 	private UserService us;
-	
-	
 	
 	@Autowired
 	public UserController(UserService us) {
@@ -43,6 +45,9 @@ public class UserController {
 	@ApiOperation(value = "회원가입",notes = "User 객체를 파라미터로 받아서 회원가입 성공하면 '가입 성공' 메세지 반환 실패하면 '가입 실패'")
 	@PostMapping(value = "/user")
 	public String registUser(@RequestBody User u) {
+		
+		// id 중복 체크
+		
 		int res = us.insert(u);
 		if(res==1) return "가입 성공";
 		return "가입 실패";
@@ -54,11 +59,13 @@ public class UserController {
 		if(res==1) return "수정 성공";
 		return "수정 실패";
 	}
+	
 	@ApiOperation(value = "유저 검색",notes = "파라미터로 id를 넘겨서 유저 1명 검색. 유저 정보 반환")
 	@GetMapping(value = "/user/id/{id}")
 	public User getUser(@PathVariable String id) {
 		return us.selectOne(id);
 	}
+	
 	@ApiOperation(value = "회원 탈퇴",notes = "파라미터로 id를 넘겨서 해당 아이디의 유저 삭제. 삭제 성공/실패 유무 메세지 반환")
 	@DeleteMapping(value = "/user/id/{id}")
 	public String deleteUser(@PathVariable String id) {
@@ -66,9 +73,10 @@ public class UserController {
 		if(res==1) return "회원 삭제 성공";
 		return "삭제 실패";
 	}
+	
 	@ApiOperation(value = "로그인",notes = "아이디 비번 확인해서 체크되면 세션 등록, 해당 유저가 어드민이면 admin 세션을 1로 등록. 로그인 실패 시, 실패 메세지 반환")
 	@PostMapping(value = "/user/login")
-	public String login(@RequestBody User u, HttpSession session) {
+	public String login(@RequestBody User u, HttpServletResponse response, HttpSession session) {
 		boolean res = us.checkUser(u);
 		String msg = null;
 		if(res) {
@@ -79,14 +87,20 @@ public class UserController {
 				session.setAttribute("admin", 0);
 			}
 			session.setAttribute("user", u);
+			
+			sessionManager.createSession(u, response);
+			
 			msg = "로그인 성공";
 		}
 		else msg = "ID / PW 를 확인해주세요.";
 		return msg;
 	}
+
+	
 	@ApiOperation(value = "로그아웃",notes = "로그아웃 API. 호출 시, 세션 초기화 및 홈 화면으로 redirect")
 	@PostMapping(value = "/user/logout")
-	public void logout(HttpSession session,HttpServletResponse res) {
+	public void logout(HttpSession session,HttpServletResponse res, HttpServletRequest request) {
+		sessionManager.expire(request);
 		session.invalidate();
 		try {
 			res.sendRedirect("index");

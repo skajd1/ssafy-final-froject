@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
+import Home from "../views/Home.vue";
+import Main from "../views/Main.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -6,12 +8,12 @@ const router = createRouter({
     {
       path: "/",
       name: "Home",
-      component: () => import("../views/Home.vue"),
+      component: Home,
     },
     {
       path: "/main",
       name: "Main",
-      component: () => import("../views/Main.vue"),
+      component: Main,
     },
     {
       path: "/tripselect",
@@ -69,6 +71,12 @@ const router = createRouter({
       component: () => import("../views/User/Login.vue"),
     },
   ],
+});
+
+router.beforeEach((to, from) => {
+  // if (response.status == 404) {
+  //   return { name: "Home" };
+  // }
 });
 
 export default router;
