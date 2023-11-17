@@ -13,7 +13,7 @@ allPlan(uid.value);
 <template>
   <div>내 계획들 확인하는 뷰에용</div>
   <div class="container">
-    <MyListItem v-for="item in items" :item="item" :key="item.pid" />
+    <MyListItem v-for="item in items" :item="item" />
   </div>
 </template>
 

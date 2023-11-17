@@ -79,6 +79,8 @@ public class UserController {
 				session.setAttribute("admin", 0);
 			}
 			session.setAttribute("user", u);
+			// 세션ID
+			
 			msg = "로그인 성공";
 		}
 		else msg = "ID / PW 를 확인해주세요.";

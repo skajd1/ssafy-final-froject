@@ -2,6 +2,8 @@ package com.mvc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,5 +71,10 @@ public class TripInfoController {
 	@GetMapping("/title/{word}")
 	public List<TripInfo> searchTitle(@PathVariable("word") String word){
 		return service.searchTitle(word);
+	}
+	@ApiOperation(value="content_id 로 관광지 조회",notes="해당 관광지 정보 출력")
+	@GetMapping("/list/{content_id}")
+	public List<TripInfo> searchById(@PathVariable("content_id") String id){
+		return service.searchById(id);
 	}
 }

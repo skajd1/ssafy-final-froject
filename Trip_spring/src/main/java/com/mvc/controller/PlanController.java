@@ -34,6 +34,8 @@ public class PlanController {
 	public ArrayList<Plan> getPlanByUId(@PathVariable String uid) {
 		return service.selectPlanByUid(uid);
 	}
+
+	
 	@ApiOperation(value = "일정 테이블 생성",notes = "유저 아이디를 포함한 일정 테이블 생성")
 	@PostMapping("/plan")
 	public String makePlan(@RequestBody Plan p) {

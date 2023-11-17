@@ -9,5 +9,6 @@ div {
   position: sticky;
   border: 1px solid gray;
   width: 300px;
+  height: 743px;
 }
 </style>

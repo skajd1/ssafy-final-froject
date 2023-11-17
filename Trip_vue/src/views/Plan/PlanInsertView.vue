@@ -27,5 +27,6 @@ import PlanInsertSideBar from "@/components/Plan/PlanInsertSideBar.vue";
 }
 .right-sidebar {
   align-items: right;
+  height: 743px;
 }
 </style>

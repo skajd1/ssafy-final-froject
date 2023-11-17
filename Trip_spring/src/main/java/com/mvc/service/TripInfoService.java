@@ -21,4 +21,6 @@ public interface TripInfoService {
 	
 	List<Sido> getSidoList();
 	List<Gugun> getGugunList(String sidoCode);
+
+	List<TripInfo> searchById(String id);
 }

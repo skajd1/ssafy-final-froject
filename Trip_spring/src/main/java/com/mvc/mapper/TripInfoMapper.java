@@ -18,4 +18,5 @@ public interface TripInfoMapper {
 	List<Sido> getSidoList();
 	List<Gugun> getGugunList(String sidoCode);
 	List<TripInfo> getInfoBySidoGugunType(String sidoCode, String gugunCode, String typeId);
+	List<TripInfo> getInfoById(String id);
 }
