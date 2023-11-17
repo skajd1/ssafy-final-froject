@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 #search {
   text-align: center;
   margin-top: 2rem;

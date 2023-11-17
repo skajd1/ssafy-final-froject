@@ -22,6 +22,8 @@ if (c < 0.7) {
       <RouterLink :to="{ name: 'MyList' }">나의 일정</RouterLink>
       <RouterLink :to="{ name: 'PlanInsert' }">일정 등록</RouterLink>
       <RouterLink :to="{ name: 'BoardList' }">일정 공유하기</RouterLink>
+
+      <RouterLink :to="{ name: 'Login' }">로그인</RouterLink>
     </nav>
   </div>
 </template>
