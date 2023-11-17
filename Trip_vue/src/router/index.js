@@ -1,15 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Main from "../views/Main.vue";
-import TripList from "../views/Trip/TripListView.vue";
-import TripSelect from "../views/Trip/TripSelectView.vue";
-import TripDetail from "../views/Trip/TripDetailView.vue";
-import PlanList from "../views/Plan/PlanListView.vue";
-import PlanDetail from "../views/Plan/PlanDetail.vue";
-import PlanInsert from "../views/Plan/PlanInsert.vue";
-import Board from "../views/Board/BoardList.vue";
-import BoardDetail from "../views/Board/BoardDetail.vue";
-import BoardInsert from "../views/Board/BoardInsert.vue";
-import Home from "../views/Home.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,57 +6,57 @@ const router = createRouter({
     {
       path: "/",
       name: "Home",
-      component: Home,
+      component: () => import("../views/Home.vue"),
     },
     {
       path: "/main",
       name: "Main",
-      component: Main,
+      component: () => import("../views/Main.vue"),
     },
     {
       path: "/tripselect",
       name: "TripSelect",
-      component: TripSelect,
+      component: () => import("../views/Trip/TripSelectView.vue"),
     },
     {
-      path: "/triplist/:sido/:gugun/:theme",
+      path: "/trip/:sido/:gugun/:theme",
       name: "TripList",
-      component: TripList,
+      component: () => import("../views/Trip/TripListView.vue"),
     },
     {
-      path: "/triplist/:tid",
+      path: "/trip/:tid",
       name: "TripDetail",
-      component: TripDetail,
+      component: () => import("../views/Trip/TripDetailView.vue"),
     },
     {
-      path: "/myplan",
-      name: "PlanList",
-      component: PlanList,
+      path: "/mylist",
+      name: "MyList",
+      component: () => import("../views/MyList/MyListView.vue"),
     },
     {
       path: "/myplan/:pid",
       name: "PlanDetail",
-      component: PlanDetail,
+      component: () => import("../views/Plan/PlanDetailView.vue"),
     },
     {
       path: "/plan/insert",
       name: "PlanInsert",
-      component: PlanInsert,
+      component: () => import("../views/Plan/PlanInsertView.vue"),
     },
     {
       path: "/board",
       name: "BoardList",
-      component: Board,
+      component: () => import("../views/Board/BoardList.vue"),
     },
     {
       path: "/board/:bid",
       name: "BoardDetail",
-      component: BoardDetail,
+      component: () => import("../views/Board/BoardDetail.vue"),
     },
     {
       path: "/board/insert",
       name: "BoardInsert",
-      component: BoardInsert,
+      component: () => import("../views/Board/BoardInsert.vue"),
     },
   ],
 });

@@ -1,14 +1,15 @@
 <script setup>
 import kmap from "@/components/common/VKakaoMap.vue";
-import PlanSideBar from "@/components/Plan/PlanSidebar.vue";
+import PlanSearchSideBar from "@/components/Plan/PlanSearchSidebar.vue";
+import PlanInsertSideBar from "@/components/Plan/PlanInsertSideBar.vue";
 </script>
 
 <template>
   <div>계획 등록 뷰</div>
   <div class="plan">
-    <PlanSideBar />
+    <PlanSearchSideBar />
     <kmap></kmap>
-    <InsertSideBar />
+    <PlanInsertSideBar />
   </div>
 </template>
 
