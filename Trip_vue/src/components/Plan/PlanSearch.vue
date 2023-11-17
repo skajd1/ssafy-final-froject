@@ -70,21 +70,25 @@ function customerSearch() {
     <div class="container">
       <slot></slot>
       <form id="form1" class="form-horizontal">
-        <div class="form-group">
-          <label for="sido"> 시/도 선택 : </label>
-          <select class="form-control" id="sido" v-model="chooseSido">
-            <option v-for="sido in sidolist" :key="sido.sidoCode" :value="sido.sidoCode">
-              {{ sido.sidoName }}
-            </option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="gugun"> 구/군 선택 : </label>
-          <select class="form-control" id="gugun" v-model="chooseGugun">
-            <option v-for="gugun in gugunlist" :key="gugun.gugun_code" :value="gugun.gugun_code">
-              {{ gugun.gugun_name }}
-            </option>
-          </select>
+        <div class="form-group" id="location">
+          <div class="form-search">
+            <!-- <label for="sido"> 시/도 : </label> -->
+            <select class="form-control" id="sido" v-model="chooseSido">
+              <option value="" selected disabled>시/도 선택</option>
+              <option v-for="sido in sidolist" :key="sido.sido_code" :value="sido.sido_code">
+                {{ sido.sido_name }}
+              </option>
+            </select>
+          </div>
+          <div class="form-search">
+            <!-- <label for="gugun"> 구/군 선택 : </label> -->
+            <select class="form-control" id="gugun" v-model="chooseGugun">
+              <option value="" selected disabled>구/군 선택</option>
+              <option v-for="gugun in gugunlist" :key="gugun.gugun_code" :value="gugun.gugun_code">
+                {{ gugun.gugun_name }}
+              </option>
+            </select>
+          </div>
         </div>
 
         <div class="form-group thema">
@@ -106,14 +110,8 @@ function customerSearch() {
         </div>
 
         <div class="btn-group">
-          <input
-            type="button"
-            class="btn btn-primary"
-            value="찾기"
-            id="btnInsert"
-            @click="customerSearch"
-          />
-          <input type="reset" class="btn btn-primary" value="초기화" id="btnInit" />
+          <input type="button" value="찾기" id="btnInsert" @click="customerSearch" />
+          <input type="reset" value="초기화" id="btnInit" />
         </div>
       </form>
     </div>
@@ -129,6 +127,34 @@ function customerSearch() {
   margin-bottom: 20px;
 }
 .container {
-  width: 300px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+
+  input {
+    width: 120px;
+    height: 35px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--main-color);
+  }
+}
+
+#location {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 20px;
+  .form-search {
+    width: 150px;
+    margin: 10px;
+  }
 }
 </style>

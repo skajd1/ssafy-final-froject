@@ -1,7 +1,9 @@
-<script setup></script>
+<script setup>
+import UserLogin from "@/components/User/UserLogin.vue";
+</script>
 
 <template>
-  <div></div>
+  <UserLogin />
 </template>
 
 <style scoped></style>

@@ -1,7 +1,9 @@
-<script setup></script>
+<script setup>
+import UserRegister from "@/components/User/UserRegister.vue";
+</script>
 
 <template>
-  <div></div>
+  <UserRegister></UserRegister>
 </template>
 
 <style scoped></style>

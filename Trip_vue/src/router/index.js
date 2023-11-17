@@ -58,6 +58,11 @@ const router = createRouter({
       name: "BoardInsert",
       component: () => import("../views/Board/BoardInsert.vue"),
     },
+    {
+      path: "/user/login",
+      name: "Login",
+      component: () => import("../views/User/Login.vue"),
+    },
   ],
 });
 

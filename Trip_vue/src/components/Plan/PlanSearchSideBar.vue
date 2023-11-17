@@ -24,7 +24,7 @@ const ToggleMenu = () => {
     </div>
 
     <div class="menu">
-      <Search></Search>
+      <Search />
       <PlanSearch />
       <PlanSearchList />
     </div>
@@ -45,6 +45,9 @@ aside {
   color: white;
 
   transition: 0.2s ease-out;
+
+  position: fixed;
+  z-index: 10;
 
   .logo {
     margin-bottom: 1rem;
@@ -83,10 +86,12 @@ aside {
 
   .menu {
     opacity: 0;
+    width: 300px;
+    margin: 0 auto;
   }
 
   &.is-expanded {
-    width: 400px;
+    width: 350px;
 
     .menu-toggle-wrap {
       top: -3rem;
@@ -98,11 +103,6 @@ aside {
     .menu {
       opacity: 1;
     }
-  }
-
-  @media (max-width: 768px) {
-    /* position: fixed; */
-    z-index: 10;
   }
 }
 

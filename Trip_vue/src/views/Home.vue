@@ -7,7 +7,9 @@ import Search from "@/components/common/Search.vue";
     <div id="title">
       <h1>어디로 가냥?<img src="@/assets/logo1.svg" /></h1>
     </div>
-    <Search></Search>
+    <div id="SearchBar">
+      <Search></Search>
+    </div>
   </div>
 </template>
 
@@ -21,5 +23,9 @@ h1 {
 #container {
   background-color: var(--vt-c-bg);
   height: 85vh;
+}
+#SearchBar {
+  width: 60%;
+  margin: 0 auto;
 }
 </style>
