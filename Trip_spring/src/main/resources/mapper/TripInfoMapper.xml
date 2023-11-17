@@ -21,6 +21,9 @@
 	<select id="getInfoAll" resultType="TripInfo">
 		select * from attraction_info
 	</select>
+	<select id="getInfoById" resultType="TripInfo" parameterType="String">
+		select * from attraction_info where content_id = #{id}
+	</select>
 
 	<select id="searchContentTypeId" resultType="TripInfo" parameterType="String">
 		select * from attraction_info where content_type_id = #{contentTypeId}
