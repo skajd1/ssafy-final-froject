@@ -1,14 +1,16 @@
 <script setup>
 import { ref } from "vue";
+import { useUserStore } from "@/stores/userStore";
+const store = useUserStore();
+const { login } = store;
 
 const loginUser = ref({
   userId: "",
   userPwd: "",
 });
-
-const login = () => {
-  console.log("login");
-};
+function userLogin() {
+  login(loginUser.value.userId, loginUser.value.userPwd);
+}
 </script>
 
 <template>
@@ -34,7 +36,7 @@ const login = () => {
               type="password"
               class="form-control"
               v-model="loginUser.userPwd"
-              @keyup.enter="login"
+              @keyup.enter="userLogin"
               placeholder="비밀번호"
             />
           </div>
@@ -43,7 +45,7 @@ const login = () => {
             <label class="form-check-label" for="saveid"> 아이디저장 </label>
           </div>
           <div class="col-auto text-center">
-            <button type="button" class="btn btn-outline-primary mb-3" @click="login">
+            <button type="button" class="btn btn-outline-primary mb-3" @click="userLogin">
               로그인
             </button>
             <button type="button" class="btn btn-outline-success ms-1 mb-3">회원가입</button>

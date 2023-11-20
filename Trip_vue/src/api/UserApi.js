@@ -1,0 +1,22 @@
+import myaxios from "../utils/axios-common.js";
+// 로그인
+function loginConfirm(id, pw, success, fail) {
+  myaxios.post("/trip/user/login", { id, pw }).then(success).catch(fail);
+}
+// 회원가입
+function regist(User, success, fail) {
+  myaxios.post("/trip/user", User).then(success).catch(fail);
+}
+
+// 패스워드 변경
+function changePw(User, success, fail) {
+  myaxios.put("/trip/user", User).then(success).catch(fail);
+}
+// 회원 탈퇴
+function deleteAccount(uid, success, fail) {
+  myaxios
+    .delete("/trip/user/uid/" + uid)
+    .then(success)
+    .catch(fail);
+}
+export { loginConfirm, regist, changePw, deleteAccount };
