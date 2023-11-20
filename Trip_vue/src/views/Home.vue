@@ -31,12 +31,12 @@ const search = () => {
 h1 {
   font-size: 100px;
   text-align: center;
-  margin-top: 2rem;
   color: var(--main-color);
 }
 #container {
+  padding-top: 10rem;
   background-color: var(--vt-c-bg);
-  height: 85vh;
+  height: 100vh;
 }
 #SearchBar {
   width: 60%;

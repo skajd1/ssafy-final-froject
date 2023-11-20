@@ -2,16 +2,16 @@
 import { useUserStore } from "@/stores/userStore";
 import { storeToRefs } from "pinia";
 import { RouterLink } from "vue-router";
-
+import { useRouter } from "vue-router";
 const store = useUserStore();
-
+const router = useRouter();
 const { isLogin, userInfo } = storeToRefs(store);
 console.log(userInfo.value);
 
 const logout = () => {
   store.logout();
-  // alert("로그아웃 되었습니다.");
-  location.reload();
+  alert("로그아웃 되었습니다.");
+  router.push({ name: "Home" });
 };
 </script>
 
