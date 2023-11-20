@@ -13,12 +13,12 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 	
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
-		if(sessionManager.getSession(request) == null) {
-			System.out.println(123);
-			response.sendError(401,"너 못들어와");
-			
-			return false;
-		}
+//		if(sessionManager.getSession(request) == null) {
+//			System.out.println(123);
+//			response.sendError(404,"너 못들어와");
+//			
+//			return false;
+//		}
 		return true;
 	}
 }

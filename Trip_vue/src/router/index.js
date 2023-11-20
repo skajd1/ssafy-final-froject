@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+
 import Home from "../views/Home.vue";
 import Main from "../views/Main.vue";
 
@@ -14,6 +15,7 @@ const router = createRouter({
       path: "/main",
       name: "Main",
       component: Main,
+      meta: { auth: true },
     },
     {
       path: "/tripselect",
@@ -74,10 +76,11 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-  // if (this.session.get("user") == null) {
-  //   console.log("401");
-  //   router.push({ name: "Login" });
+  // if (this.$session.get("user") == null && to.name != "Login") {
+  //   alert("로그인이 필요합니다.");
+  //   return false;
   // }
+  // localStorage.console.log(to);
 });
 
 export default router;

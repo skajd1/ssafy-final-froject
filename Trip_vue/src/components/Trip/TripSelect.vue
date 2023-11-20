@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { getGugun, getSido } from "@/api/trip.js";
+import { getGugun, getSido } from "@/api/TripApi.js";
 const router = useRouter();
 
 const chooseSido = ref("");
