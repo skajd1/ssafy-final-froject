@@ -1,47 +1,110 @@
-<script setup></script>
+<script setup>
+import { reactive, ref, watch } from "vue";
+
+const user = reactive({
+  nickname: "",
+  userid: "",
+  password: "",
+  passwordCheck: "",
+});
+
+const errorid = ref(false);
+const errorid2 = ref(false);
+const errorpwd = ref(false);
+
+watch(
+  () => user.userid,
+  (userid) => {
+    checkidlen(userid);
+  }
+);
+
+watch(
+  () => user.passwordCheck,
+  (pwdcheck) => {
+    checkPwdRetry(pwdcheck);
+  }
+);
+
+const checkidlen = (userid) => {
+  const idCheck = /^[a-zA-Z가-힣0-9]{4,12}$/;
+
+  if (idCheck.test(userid)) {
+    errorid.value = false;
+  } else {
+    errorid.value = true;
+  }
+};
+
+const checkPwdRetry = (pwdcheck) => {
+  if (user.password !== pwdcheck) {
+    errorpwd.value = true;
+  } else {
+    errorpwd.value = false;
+  }
+};
+
+const userJoin = () => {};
+</script>
 
 <template>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <h2 class="my-3 py-3 shadow-sm bg-light text-center">
-          <mark class="orange">회원가입</mark>
-        </h2>
+        <h2 class="my-3 py-3 shadow-sm bg-light text-center">회원가입</h2>
       </div>
       <div class="col-lg-10 text-start">
         <form>
           <div class="mb-3">
-            <label for="username" class="form-label">이름 : </label>
-            <input type="text" class="form-control" placeholder="이름..." />
+            <label for="nickname" class="form-label">닉네임 : </label>
+            <input
+              type="text"
+              class="form-control"
+              id="nickname"
+              placeholder="이름"
+              v-model="user.nickname"
+            />
           </div>
           <div class="mb-3">
             <label for="userid" class="form-label">아이디 : </label>
-            <input type="text" class="form-control" placeholder="아이디..." />
+            <input
+              type="text"
+              class="form-control"
+              id="userid"
+              placeholder="아이디"
+              v-model="user.userid"
+            />
+            <!-- <div class="success-message" v-show="sucessid">사용할 수 있는 아이디입니다</div> -->
+            <div class="failure-message" v-show="errorid">아이디는 4~12글자이어야 합니다</div>
+            <div class="failure-message2" v-show="errorid2">영어 또는 숫자만 가능합니다</div>
           </div>
           <div class="mb-3">
-            <label for="userpwd" class="form-label">비밀번호 : </label>
-            <input type="text" class="form-control" placeholder="비밀번호..." />
+            <label for="pwd" class="form-label">비밀번호 : </label>
+            <input
+              type="password"
+              class="form-control"
+              id="pwd"
+              placeholder="비밀번호"
+              v-model="user.password"
+            />
+            <!-- <div class="strongPassword-message hide">8글자 이상, 영문, 숫자, 특수문자(@$!%*#?&)를 사용하세요</div> -->
           </div>
           <div class="mb-3">
-            <label for="pwdcheck" class="form-label">비밀번호확인 : </label>
-            <input type="text" class="form-control" id="pwdcheck" placeholder="비밀번호확인..." />
+            <label for="pwdcheck" class="form-label">비밀번호 확인 : </label>
+            <input
+              type="password"
+              class="form-control"
+              id="pwdcheck"
+              placeholder="비밀번호확인"
+              v-model="user.passwordCheck"
+            />
+            <div class="mismatch-message" v-show="errorpwd">비밀번호가 일치하지 않습니다</div>
           </div>
-          <div class="mb-3">
-            <label for="emailid" class="form-label">이메일 : </label>
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="이메일아이디" />
-              <span class="input-group-text">@</span>
-              <select class="form-select" aria-label="이메일 도메인 선택">
-                <option selected>선택</option>
-                <option value="ssafy.com">싸피</option>
-                <option value="google.com">구글</option>
-                <option value="naver.com">네이버</option>
-                <option value="kakao.com">카카오</option>
-              </select>
-            </div>
-          </div>
+
           <div class="col-auto text-center">
-            <button type="button" class="btn btn-outline-primary mb-3">회원가입</button>
+            <button type="button" class="btn btn-outline-primary mb-3" @click="userJoin">
+              회원가입
+            </button>
             <button type="button" class="btn btn-outline-success ms-1 mb-3">초기화</button>
           </div>
         </form>
@@ -50,4 +113,16 @@
   </div>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.container {
+  color: var(--main-color);
+
+  div {
+    margin-bottom: 1rem;
+
+    button {
+      margin: 10px;
+    }
+  }
+}
+</style>

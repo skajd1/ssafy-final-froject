@@ -5,26 +5,33 @@ import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const store = useUserStore();
-const { login } = store;
 
 const { isLogin } = storeToRefs(store);
+const { login, getUserInfo } = store;
 
 const loginUser = ref({
   userId: "",
   userPwd: "",
 });
-function userLogin() {
-  login(loginUser.value.userId, loginUser.value.userPwd);
 
-  if (isLogin) router.push("/main");
-}
+const userLogin = async () => {
+  await login(loginUser.value.userId, loginUser.value.userPwd);
+
+  console.log("isLogin: ", isLogin.value);
+
+  if (isLogin) {
+    getUserInfo(loginUser.value.userId);
+
+    router.push("/main");
+  }
+};
 </script>
 
 <template>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <h2 class="my-3 py-3 shadow-sm bg-light text-center"><spane>로그인</spane></h2>
+        <h2 class="my-3 py-3 shadow-sm bg-light text-center">로그인</h2>
       </div>
       <div class="col-lg-10">
         <form>
@@ -47,10 +54,10 @@ function userLogin() {
               placeholder="비밀번호"
             />
           </div>
-          <div id="remember" class="form-check mb-3 float-end">
+          <!-- <div id="remember" class="form-check mb-3 float-end">
             <input class="form-check-input" type="checkbox" id="saveid" />
             <label class="form-check-label" for="saveid"> 아이디저장 </label>
-          </div>
+          </div> -->
           <div class="col-auto text-center">
             <button type="button" class="btn btn-outline-primary mb-3" @click="userLogin">
               로그인
