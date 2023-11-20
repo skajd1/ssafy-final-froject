@@ -2,58 +2,73 @@ import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import { loginConfirm, getInfo, regist, changePw, deleteAccount } from "@/api/UserApi.js";
 // 라우터 변경 테스트 해보기
-const useUserStore = defineStore("useUserStore", () => {
-  const userInfo = ref({
-    uid: "",
-    id: "",
-    nickname: "",
-    admin: false,
-  });
+const useUserStore = defineStore(
+  "useUserStore",
+  () => {
+    const userInfo = ref({
+      uid: "",
+      id: "",
+      nickname: "",
+      admin: false,
+    });
 
-  const isLogin = ref(false);
+    const isLogin = ref(false);
 
-  const login = (id, pw) => {
-    loginConfirm(
-      id,
-      pw,
-      (res) => {
-        if (res.data) {
-          isLogin.value = true;
+    const login = async (id, pw) => {
+      await loginConfirm(
+        id,
+        pw,
+        (res) => {
+          if (res.data) {
+            isLogin.value = true;
+          }
+        },
+        (err) => {
+          console.log(err);
         }
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  };
+      );
+      console.log("login", isLogin.value);
+    };
 
-  const getUserInfo = (uid) => {
-    getInfo(
-      uid,
-      (res) => {
-        if (res.data) {
-          userInfo.value.uid = res.data.uid;
-          userInfo.value.id = res.data.id;
-          userInfo.value.nickname = res.data.nickname;
-          userInfo.value.admin = res.data.admin;
+    const getUserInfo = (uid) => {
+      getInfo(
+        uid,
+        (res) => {
+          if (res.data) {
+            userInfo.value.uid = res.data.uid;
+            userInfo.value.id = res.data.id;
+            userInfo.value.nickname = res.data.nickname;
+            userInfo.value.admin = res.data.admin;
+          }
+        },
+        (err) => {
+          console.log(err);
         }
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  };
+      );
+    };
 
-  const logout = () => {};
+    const logout = () => {
+      console.log("logout");
+      isLogin.value = false;
 
-  const user = computed(() => session.value);
-  return {
-    login,
-    logout,
-    getUserInfo,
-    userInfo,
-    isLogin,
-  };
-});
+      userInfo.value = {
+        uid: "",
+        id: "",
+        nickname: "",
+        admin: false,
+      };
+    };
+
+    const user = computed(() => session.value);
+    return {
+      login,
+      logout,
+      getUserInfo,
+      userInfo,
+      isLogin,
+    };
+  },
+  { persist: true }
+);
 
 export { useUserStore };

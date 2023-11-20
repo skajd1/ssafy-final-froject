@@ -16,8 +16,7 @@
     "swiper": "^11.0.4",
     "vue": "^3.3.4",
     "vue-awesome-sidebar": "^1.2.3",
-    "vue-router": "^4.2.5",
-    "vue-session": "^1.0.0"
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.4.0",

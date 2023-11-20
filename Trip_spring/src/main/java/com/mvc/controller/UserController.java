@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.SessionManager;
 import com.mvc.service.UserService;
 import com.mvc.vo.User;
 
@@ -72,6 +71,12 @@ public class UserController {
 		boolean res = us.checkUser(u);
 		return res;
 		
+	}
+	@ApiOperation(value = "유저id로 정보 조회",notes = "id로 유저 정보 조회")
+	@GetMapping(value = "/user/id/{id}")
+	public User getUserInfo(@PathVariable String id) {
+		ArrayList<User> u = us.selectOne(id);
+		return u.get(0);
 	}
 	
 

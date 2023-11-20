@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useUserStore } from "@/stores/userStore";
+import { storeToRefs } from "pinia";
 
 import Home from "../views/Home.vue";
 import Main from "../views/Main.vue";
@@ -15,7 +17,6 @@ const router = createRouter({
       path: "/main",
       name: "Main",
       component: Main,
-      meta: { auth: true },
     },
     {
       path: "/tripselect",
@@ -72,9 +73,21 @@ const router = createRouter({
       name: "Login",
       component: () => import("../views/User/Login.vue"),
     },
+    {
+      path: "/user/join",
+      name: "Join",
+      component: () => import("../views/User/Regist.vue"),
+    },
   ],
 });
 
-router.beforeEach((to, from) => {});
+router.beforeEach((to, from) => {
+  const userStore = useUserStore();
+  const { isLogin } = storeToRefs(userStore);
+
+  if (to.name !== "Home" && to.name !== "Login" && to.name !== "Join" && !isLogin.value) {
+    return { name: "Login" };
+  }
+});
 
 export default router;
