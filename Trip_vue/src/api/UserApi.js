@@ -8,6 +8,14 @@ function regist(User, success, fail) {
   myaxios.post("/trip/user", User).then(success).catch(fail);
 }
 
+// 회원정보
+function getInfo(id, success, fail) {
+  myaxios
+    .get("/trip/user/id/" + id)
+    .then(success)
+    .catch(fail);
+}
+
 // 패스워드 변경
 function changePw(User, success, fail) {
   myaxios.put("/trip/user", User).then(success).catch(fail);
@@ -19,4 +27,4 @@ function deleteAccount(uid, success, fail) {
     .then(success)
     .catch(fail);
 }
-export { loginConfirm, regist, changePw, deleteAccount };
+export { loginConfirm, regist, changePw, deleteAccount, getInfo };

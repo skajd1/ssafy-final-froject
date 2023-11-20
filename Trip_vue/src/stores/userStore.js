@@ -1,34 +1,57 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import { loginConfirm, regist, changePw, deleteAccount } from "@/api/UserApi.js";
+import { loginConfirm, getInfo, regist, changePw, deleteAccount } from "@/api/UserApi.js";
 // 라우터 변경 테스트 해보기
 const useUserStore = defineStore("useUserStore", () => {
-  const session = ref({
+  const userInfo = ref({
     uid: "",
     id: "",
     nickname: "",
     admin: false,
   });
+
   const isLogin = ref(false);
+
   const login = (id, pw) => {
     loginConfirm(
       id,
       pw,
       (res) => {
-        if (res.data) isLogin.value = true;
+        if (res.data) {
+          isLogin.value = true;
+        }
       },
       (err) => {
         console.log(err);
       }
     );
   };
+
+  const getUserInfo = (uid) => {
+    getInfo(
+      uid,
+      (res) => {
+        if (res.data) {
+          userInfo.value.uid = res.data.uid;
+          userInfo.value.id = res.data.id;
+          userInfo.value.nickname = res.data.nickname;
+          userInfo.value.admin = res.data.admin;
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  };
+
   const logout = () => {};
 
   const user = computed(() => session.value);
   return {
     login,
     logout,
-    user,
+    getUserInfo,
+    userInfo,
     isLogin,
   };
 });

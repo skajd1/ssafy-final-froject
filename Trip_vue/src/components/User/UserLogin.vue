@@ -5,9 +5,9 @@ import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const store = useUserStore();
-const { login } = store;
 
-const { isLogin } = storeToRefs(store);
+const { isLogin, userInfo } = storeToRefs(store);
+const { login, getUserInfo } = store;
 
 const loginUser = ref({
   userId: "",
@@ -16,7 +16,11 @@ const loginUser = ref({
 function userLogin() {
   login(loginUser.value.userId, loginUser.value.userPwd);
 
-  if (isLogin) router.push("/main");
+  if (isLogin) {
+    getUserInfo(loginUser.value.userId);
+    console.log(userInfo.value);
+    router.push("/main");
+  }
 }
 </script>
 
