@@ -17,4 +17,4 @@ function getTripInfoByTitle(title, success, fail) {
   myaxios.get(`/trip/title/${title}`).then(success).catch(fail);
 }
 
-export { getGugun, getTripInfo, getSido, getTripInfoById };
+export { getGugun, getTripInfo, getSido, getTripInfoById, getTripInfoByTitle };

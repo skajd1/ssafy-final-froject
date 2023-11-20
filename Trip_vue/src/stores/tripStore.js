@@ -6,10 +6,17 @@ const useTripStore = defineStore("useTripStore", () => {
   const initItems = () => {
     tripItems.value = [];
   };
+  const key = ref("");
+
+  const keyword = computed({
+    get: () => key.value,
+    set: (value) => (key.value = value),
+  });
 
   return {
     initItems,
     tripItems,
+    keyword,
   };
 });
 export { useTripStore };

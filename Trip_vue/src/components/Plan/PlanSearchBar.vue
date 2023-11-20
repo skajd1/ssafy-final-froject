@@ -2,9 +2,7 @@
 import { ref, watch } from "vue";
 import { useTripStore } from "@/stores/tripStore";
 import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
 
-const router = useRouter();
 const store = useTripStore();
 const key = ref("");
 
@@ -13,18 +11,11 @@ const { keyword: keyword } = storeToRefs(store);
 watch(key, () => {
   keyword.value = key.value;
 });
-const search = () => {
-  if (key.value === "") {
-    alert("검색어를 입력해주세요");
-    return;
-  }
-  router.push("/search" + "?keyword=" + key.value);
-};
 </script>
 
 <template>
   <div id="search">
-    <input type="text" placeholder="검색하냥" v-model="key" @keyup.enter="search" />
+    <input type="text" placeholder="검색하냥" v-model="key" />
   </div>
 </template>
 

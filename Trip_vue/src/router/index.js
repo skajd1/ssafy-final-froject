@@ -24,8 +24,9 @@ const router = createRouter({
       component: () => import("../views/Trip/TripSelectView.vue"),
     },
     {
-      path: "/trip/:sido/:gugun/:theme",
+      path: "/search",
       name: "TripList",
+      query: { keyword: "", sido: "", gugun: "", theme: "" },
       component: () => import("../views/Trip/TripListView.vue"),
     },
     {
@@ -86,6 +87,7 @@ router.beforeEach((to, from) => {
   const { isLogin } = storeToRefs(userStore);
 
   if (to.name !== "Home" && to.name !== "Login" && to.name !== "Join" && !isLogin.value) {
+    alert("로그인이 필요합니다.");
     return { name: "Login" };
   }
 });

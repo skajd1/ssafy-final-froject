@@ -1,5 +1,18 @@
 <script setup>
+import { useRouter } from "vue-router";
 import Search from "@/components/common/Search.vue";
+import { useTripStore } from "@/stores/tripStore";
+import { storeToRefs } from "pinia";
+const store = useTripStore();
+const { keyword: keyword } = storeToRefs(store);
+const router = useRouter();
+const search = () => {
+  if (keyword.value === "") {
+    alert("검색어를 입력해주세요");
+    return;
+  }
+  router.push("/search" + "?keyword=" + keyword.value);
+};
 </script>
 
 <template>
@@ -9,7 +22,7 @@ import Search from "@/components/common/Search.vue";
     </div>
     <div id="SearchBar">
       <Search></Search>
-      <button>검색</button>
+      <button @click="search">검색</button>
     </div>
   </div>
 </template>

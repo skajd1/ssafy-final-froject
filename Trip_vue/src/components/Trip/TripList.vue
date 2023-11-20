@@ -1,21 +1,24 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import item from "./TripListItem.vue";
-import { getTripInfo } from "@/api/TripApi.js";
+import { getTripInfo, getTripInfoByTitle } from "@/api/TripApi.js";
 // import { getTripInfo } from "@/api/TripApi";
-
+const router = useRouter();
 const route = useRoute();
+const keyword = route.query.keyword;
+const trips = ref([]);
+
 onMounted(() => {
-  let sido = route.params.sido;
-  let gugun = route.params.gugun;
-  let typeid = route.params.theme;
-  getTripInfo(
-    sido,
-    gugun,
-    typeid,
+  getTripInfoByTitle(
+    keyword,
     (res) => {
-      console.log(res.data);
+      if (res.data.length === 0) {
+        alert("검색 결과가 없습니다.");
+        router.push("/");
+
+        return;
+      }
       trips.value = res.data;
     },
     (e) => {
@@ -23,14 +26,11 @@ onMounted(() => {
     }
   );
 });
-
-const trips = ref([]);
 </script>
 <template>
   <div class="container">
     <h2>여행지 조회 목록</h2>
     <!-- 여행지 썸네일과 그 타이틀이 하나의 컴포넌트가 되고, -->
-    <!-- 필터에 맞는 컴포넌트가 여러개 조회된다. -->
     <!-- 가로로 스크롤바 -->
     <div id="items">
       <item v-for="trip in trips" :key="trip.tid" :t="trip"></item>

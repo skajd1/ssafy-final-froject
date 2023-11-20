@@ -6,7 +6,7 @@ const router = useRouter();
 
 const chooseSido = ref("");
 const chooseGugun = ref("");
-const chooseThema = ref("");
+const chooseThema = ref([]);
 const gugunlist = ref([]);
 const sidolist = ref([]);
 
@@ -47,7 +47,7 @@ const themalist = ref([
   { themaCode: "39", themaName: "음식점" },
 ]);
 
-function customerSearch() {
+function search() {
   if (chooseSido.value === "") {
     alert("시/도를 선택하세요");
     return;
@@ -56,12 +56,23 @@ function customerSearch() {
     alert("구/군을 선택하세요");
     return;
   }
-  if (chooseThema.value === "") {
+  if (chooseThema.value.length === 0) {
     alert("테마를 선택하세요");
     return;
   }
-
-  // router.push(`/triplist/${chooseSido.value}/${chooseGugun.value}/${chooseThema.value}`);
+  console.log(chooseSido.value);
+  console.log(chooseGugun.value);
+  console.log(chooseThema.value);
+  // 시도, 구군, 테마 코드에 맞는 관광지 리스트 가져오기
+  // -> keyword는 null이여도 그냥 ''로 넘겨도 된다.
+  // null이 아니면 where절에 동적 쿼리로 추가하기.
+}
+function selectTheme(themaCode) {
+  if (chooseThema.value.includes(themaCode)) {
+    chooseThema.value = chooseThema.value.filter((item) => item !== themaCode);
+  } else {
+    chooseThema.value.push(themaCode);
+  }
 }
 </script>
 
@@ -92,19 +103,21 @@ function customerSearch() {
         </div>
 
         <div class="form-group thema">
+          <!-- checkbox -->
           <span v-for="(thema, index) in themalist" :key="thema.themaCode">
             <input
-              type="radio"
-              :id="thema.themaCode"
-              v-model="chooseThema"
+              type="checkbox"
+              :name="thema.themaCode"
               :value="thema.themaCode"
+              @click="selectTheme(thema.themaCode)"
             />
+
             <label :for="thema.themaCode">{{ thema.themaName }}</label>
           </span>
         </div>
 
         <div class="btn-group">
-          <input type="button" value="찾기" id="btnInsert" @click="customerSearch" />
+          <input type="button" value="검색" id="btnInsert" @click="search()" />
           <input type="reset" value="초기화" id="btnInit" />
         </div>
       </form>
