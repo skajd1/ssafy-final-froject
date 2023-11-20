@@ -26,9 +26,23 @@ h1 {
   height: 85vh;
 }
 #SearchBar {
-  width: 100%;
+  width: 60%;
   display: flex;
-  justify-content: center;
+
   align-items: center;
+  margin: 0 auto;
+}
+button {
+  margin-top: 2rem;
+  width: 100px;
+  height: 50px;
+  font-size: 30px;
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
+  outline-color: var(--main-color);
+
+  text-align: center;
+  color: var(--main-color);
+  margin-left: 1rem;
 }
 </style>

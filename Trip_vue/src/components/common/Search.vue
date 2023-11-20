@@ -8,6 +8,7 @@
 
 <style lang="scss" scoped>
 #search {
+  width: 100%;
   text-align: center;
   margin-top: 2rem;
 }
