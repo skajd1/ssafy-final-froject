@@ -75,12 +75,6 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach((to, from) => {
-  // if (this.$session.get("user") == null && to.name != "Login") {
-  //   alert("로그인이 필요합니다.");
-  //   return false;
-  // }
-  // localStorage.console.log(to);
-});
+router.beforeEach((to, from) => {});
 
 export default router;

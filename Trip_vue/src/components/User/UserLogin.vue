@@ -1,29 +1,23 @@
 <script setup>
 import { ref } from "vue";
-import { storeToRefs } from "pinia";
 import { useUserStore } from "@/stores/userStore";
+import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const store = useUserStore();
+const { login } = store;
 
-const userStore = useUserStore();
-
-const isLogin = storeToRefs(userStore);
-const { userLogin } = userStore;
-
-const userid = ref();
-const userpwd = ref();
+const { isLogin } = storeToRefs(store);
 
 const loginUser = ref({
-  userId: userid.value,
-  userPwd: userpwd.value,
+  userId: "",
+  userPwd: "",
 });
+function userLogin() {
+  login(loginUser.value.userId, loginUser.value.userPwd);
 
-const login = () => {
-  userLogin(loginUser.value);
-
-  if (isLogin) {
-    console.log("로그인 성공");
-    router.push("/main");
-  }
-};
+  if (isLogin) router.push("/main");
+}
 </script>
 
 <template>
@@ -49,7 +43,7 @@ const login = () => {
               type="password"
               class="form-control"
               v-model="loginUser.userPwd"
-              @keyup.enter="login"
+              @keyup.enter="userLogin"
               placeholder="비밀번호"
             />
           </div>
@@ -58,7 +52,7 @@ const login = () => {
             <label class="form-check-label" for="saveid"> 아이디저장 </label>
           </div>
           <div class="col-auto text-center">
-            <button type="button" class="btn btn-outline-primary mb-3" @click="login">
+            <button type="button" class="btn btn-outline-primary mb-3" @click="userLogin">
               로그인
             </button>
             <button type="button" class="btn btn-outline-success ms-1 mb-3">회원가입</button>
