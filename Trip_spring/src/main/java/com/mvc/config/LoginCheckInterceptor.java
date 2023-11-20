@@ -15,7 +15,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 		
 		if(sessionManager.getSession(request) == null) {
 			System.out.println(123);
-			response.sendError(404,"너 못들어와");
+			response.sendError(401,"너 못들어와");
 			
 			return false;
 		}
