@@ -1,8 +1,13 @@
 <script setup>
 import { ref } from "vue";
 import { useUserStore } from "@/stores/userStore";
+import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const store = useUserStore();
 const { login } = store;
+
+const { isLogin } = storeToRefs(store);
 
 const loginUser = ref({
   userId: "",
@@ -10,6 +15,8 @@ const loginUser = ref({
 });
 function userLogin() {
   login(loginUser.value.userId, loginUser.value.userPwd);
+
+  if (isLogin) router.push("/main");
 }
 </script>
 
