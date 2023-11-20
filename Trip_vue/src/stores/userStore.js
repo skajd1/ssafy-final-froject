@@ -17,7 +17,6 @@ const useUserStore = defineStore("useUserStore", () => {
       (res) => {
         if (res.data) {
           isLogin.value = true;
-          session;
         }
       },
       (err) => {

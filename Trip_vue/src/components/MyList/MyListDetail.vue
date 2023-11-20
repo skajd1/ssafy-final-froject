@@ -1,15 +1,16 @@
 <script setup>
 import { RouterLink, useRoute } from "vue-router";
 import { usePlanStore } from "@/stores/planStore";
-
+import { storeToRefs } from "pinia";
+import { watch } from "vue";
 import VKaKaoMap from "@/components/common/VKaKaoMap.vue";
 import TimeLine from "@/components/MyList/TimeLine.vue";
+
 const route = useRoute();
 const pid = route.params.pid;
 const title = route.query.title;
 const store = usePlanStore();
 const { planItems } = store;
-
 planItems(pid);
 </script>
 
@@ -29,11 +30,12 @@ planItems(pid);
 <style scoped>
 .mapbox {
   width: 100%;
-  height: 500px;
+  height: 470px;
 }
 .timelinebox {
+  padding: 10 auto;
   width: 100%;
   border: 1px solid black;
-  height: 250px;
+  height: 280px;
 }
 </style>

@@ -13,5 +13,8 @@ function getTripInfo(sidoCode, gugunCode, typeid, success, fail) {
 function getTripInfoById(id, success, fail) {
   myaxios.get(`/trip/list/${id}`).then(success).catch(fail);
 }
+function getTripInfoByTitle(title, success, fail) {
+  myaxios.get(`/trip/title/${title}`).then(success).catch(fail);
+}
 
 export { getGugun, getTripInfo, getSido, getTripInfoById };

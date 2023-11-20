@@ -5,7 +5,6 @@ import { getMyPlans, getPlanItems } from "@/api/PlanApi.js";
 const usePlanStore = defineStore("usePlanStore", () => {
   //1. state
   const plans = ref([]);
-  const plan = ref({});
   const Items = ref([]);
 
   //2. action

@@ -9,6 +9,7 @@ import Search from "@/components/common/Search.vue";
     </div>
     <div id="SearchBar">
       <Search></Search>
+      <button>검색</button>
     </div>
   </div>
 </template>
@@ -25,7 +26,9 @@ h1 {
   height: 85vh;
 }
 #SearchBar {
-  width: 60%;
-  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

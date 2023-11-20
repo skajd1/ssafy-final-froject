@@ -1,20 +1,27 @@
 <script setup>
-import { watchEffect, ref } from "vue";
+import { watch, ref } from "vue";
 import { getTripInfoById } from "@/api/TripApi";
+import { storeToRefs } from "pinia";
+import { useTripStore } from "@/stores/tripStore";
+const tstore = useTripStore();
+const { tripItems: tripItems } = storeToRefs(tstore);
 
 const props = defineProps({
-  item: Object,
+  planItem: Object,
 });
-const planItem = ref({});
+const plan = ref({});
 const title = ref("");
 const imgsrc = ref("");
+const tmp = [];
+
 getTripInfoById(
-  props.item.content_id,
+  props.planItem.content_id,
   (res) => {
-    planItem.value = res.data;
-    title.value = planItem.value[0].title;
-    imgsrc.value = planItem.value[0].firstImage;
-    console.log(planItem.value[0]);
+    plan.value = res.data;
+    title.value = plan.value[0].title;
+    imgsrc.value = plan.value[0].firstImage;
+    // tripItems.value.push(plan.value[0]);
+    tmp.push(props.planItem.content_id);
   },
   (err) => {
     console.log(err);
@@ -24,22 +31,24 @@ getTripInfoById(
 
 <template>
   <div class="timeline-item">
-    {{ item.date.split(" ")[0] }}
+    {{ planItem.date.split(" ")[0] }}
     {{ title }}
     <img :src="imgsrc" />
+    {{ planItem.comment }}
   </div>
 </template>
 
 <style scoped>
 .timeline-item {
-  width: 300px;
-  height: 100%;
-  border: 1px solid gray;
+  margin: 10px;
+  min-width: 320px;
+  max-width: 320px;
+
   border-radius: 10px;
 }
 .timeline-item img {
   width: 100%;
-
+  height: 180px;
   border-radius: 10px;
 }
 </style>
