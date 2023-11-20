@@ -74,8 +74,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-  // if (response.status == 404) {
-  //   return { name: "Home" };
+  // if (this.session.get("user") == null) {
+  //   console.log("401");
+  //   router.push({ name: "Login" });
   // }
 });
 
