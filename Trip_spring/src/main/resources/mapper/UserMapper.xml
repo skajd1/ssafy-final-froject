@@ -11,16 +11,16 @@
 	<select id="selectOne" resultType="User" parameterType="String">
 		select * from user where id = #{id}
 	</select>
-	<select id="checkUser" resultType="User" parameterType="com.mvc.vo.User">
+	<select id="checkUser" resultType="User" parameterType="User">
 		select * from user where id = #{id} and pw = #{pw}
 	</select>
-	<insert id = "insert" parameterType="com.mvc.vo.User">
+	<insert id = "insert" parameterType="User">
 		insert into user (id,pw, nickname) values(#{id}, #{pw}, #{nickname})
 	</insert>
 	<delete id = "delete" parameterType = "String">
-		delete from user where id = #{id}
+		delete from user where uid = #{uid}
 	</delete>
-	<update id="update" parameterType="com.mvc.vo.User">
+	<update id="update" parameterType="User">
 		update user set pw = #{pw} where id = #{id}
 	</update>
 

@@ -9,9 +9,9 @@ import com.mvc.vo.User;
 @Mapper
 public interface UserMapper {
 	public ArrayList<User> selectAll();
-	public User selectOne(String id);
+	public ArrayList<User> selectOne(String id);
 	public int insert(User u);
-	public int delete(String id);
+	public int delete(String uid);
 	public int update(User u);
-	public User checkUser(User u);
+	public User checkUser(String id, String pw);
 }

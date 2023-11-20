@@ -10,9 +10,9 @@ public class User {
 	String id;
 	String pw;
 	String nickname;
+	int admin;
 	String pimgsrc;
 	
-	int admin;
 	public boolean isAdmin() {
 		if (admin == 1) return true;
 		return false;

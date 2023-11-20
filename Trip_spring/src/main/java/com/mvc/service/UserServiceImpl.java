@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService{
 		return mapper.selectAll();
 	}
 	@Override
-	public User selectOne(String id) {
+	public ArrayList<User> selectOne(String id) {
 		return mapper.selectOne(id);
 	}
 	@Override
@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService{
 		return mapper.insert(u);
 	}
 	@Override
-	public int delete(String id) {
-		return mapper.delete(id);
+	public int delete(String uid) {
+		return mapper.delete(uid);
 	}
 	@Override
 	public int update(User u) {
@@ -37,8 +37,14 @@ public class UserServiceImpl implements UserService{
 	}
 	@Override
 	public boolean checkUser(User u) {
-		User res = mapper.checkUser(u);
+		User res = mapper.checkUser(u.getId(), u.getPw());
 		if(res == null) return false;
+		return true;
+	}
+	@Override
+	public boolean DupCheck(String id) {
+		ArrayList<User> res = mapper.selectOne(id);
+		if(res.size() > 1) return false;
 		return true;
 	}
 
