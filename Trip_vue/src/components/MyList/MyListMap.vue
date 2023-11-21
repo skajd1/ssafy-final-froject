@@ -15,8 +15,7 @@ watch(
   selected,
   () => {
     map.setCenter(new kakao.maps.LatLng(selected.value.latitude, selected.value.longitude));
-    console.log(selected.value);
-    infoWindows.value.forEach((infoWindow) => infoWindow.close());
+    deleteIw();
   },
   { deep: true }
 );
@@ -63,7 +62,7 @@ const loadMarkers = () => {
   deleteMarkers();
 
   markers.value = [];
-  positions.value.forEach((position) => {
+  positions.value.forEach((position, index) => {
     const marker = new kakao.maps.Marker({
       map: map,
       position: position.latlng,
@@ -76,6 +75,7 @@ const loadMarkers = () => {
 
     let infoWindow = new kakao.maps.InfoWindow({
       position: position.latlng,
+      removable: true,
       content: `
         <div style="width:240px;height:160px;text-align:center;padding:6px 0;">
             <div>
@@ -86,18 +86,19 @@ const loadMarkers = () => {
             </div>
             <div>
               ${position.tel}
+            </div>
+            <br>
+            <div style = "margin-left : 140px;">
+              <button onclick="deleteIw()">닫기</button>
             </div>              
         </div>
-
-          
         `,
     });
-    kakao.maps.event.addListener(marker, "click", () => {
-      infoWindow.open(map, marker);
-    });
-
     // infoWindow.open(map, marker);
     infoWindows.value.push(infoWindow);
+    kakao.maps.event.addListener(marker, "click", () => {
+      selectData(index);
+    });
   });
 
   map.setCenter(positions.value[0].latlng);
@@ -115,6 +116,15 @@ const deleteMarkers = () => {
   if (markers.value.length > 0) {
     markers.value.forEach((marker) => marker.setMap(null));
   }
+};
+const deleteIw = () => {
+  if (infoWindows.value.length > 0) {
+    infoWindows.value.forEach((infoWindow) => infoWindow.close());
+  }
+};
+const selectData = (index) => {
+  deleteIw();
+  infoWindows.value[index].open(map, markers.value[index]);
 };
 </script>
 
