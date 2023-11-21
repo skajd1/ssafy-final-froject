@@ -33,7 +33,8 @@ setTimeout(() => {
   <div class="timeline-item">
     {{ planItem.date.split(" ")[0] }}
     {{ title }}
-    <img :src="imgsrc" @click="selectTrip" />
+    <img v-if="imgsrc" :src="imgsrc" @click="selectTrip" />
+    <img v-else src="@/assets/logo0.svg" @click="selectTrip" />
 
     {{ planItem.comment }}
   </div>
