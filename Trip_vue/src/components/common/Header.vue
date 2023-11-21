@@ -19,21 +19,22 @@ if (c < 0.7) {
     </RouterLink>
 
     <nav>
-      <RouterLink :to="{ name: 'Main' }">메인 화면</RouterLink>
-      <RouterLink :to="{ name: 'MyList' }">나의 일정</RouterLink>
-      <RouterLink :to="{ name: 'PlanInsert' }">일정 등록</RouterLink>
-      <RouterLink :to="{ name: 'BoardList' }">일정 공유하기</RouterLink>
+      <div>
+        <RouterLink :to="{ name: 'Main' }">메인 화면</RouterLink>
+        <RouterLink :to="{ name: 'MyList' }">나의 일정</RouterLink>
+        <RouterLink :to="{ name: 'PlanInsert' }">일정 등록</RouterLink>
+        <RouterLink :to="{ name: 'BoardList' }">일정 공유하기</RouterLink>
+      </div>
+      <div>
+        <LoginCheck />
+      </div>
     </nav>
-    <div>
-      <LoginCheck />
-    </div>
   </div>
 </template>
 
 <style scoped>
 div {
   display: flex;
-
   align-items: center;
   padding: 1rem;
 
@@ -50,6 +51,8 @@ nav {
   font-size: 32px;
   text-align: center;
   margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 nav a.router-link-exact-active {
