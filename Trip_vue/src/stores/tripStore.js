@@ -58,44 +58,43 @@ const useTripStore = defineStore("useTripStore", () => {
     thema.push(themaCode);
   };
 
-  watch(
-    searchdata,
-    () => {
-      getTripInfo(
-        searchdata,
-        (res) => {
-          tripList.value = res.data;
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    },
-    { deep: true }
-  );
+  const getTripList = () => {
+    getTripInfo(
+      searchdata,
+      (res) => {
+        tripList.value = res.data;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  };
 
-  watch(
-    thema,
-    () => {
-      getTripInfo(
-        searchdata,
-        (res) => {
-          tripList.value = res.data;
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    },
-    { deep: true }
-  );
+  // watch(
+  //   thema,
+  //   () => {
+  //     getTripInfo(
+  //       searchdata,
+  //       (res) => {
+  //         tripList.value = res.data;
+  //       },
+  //       (err) => {
+  //         console.log(err);
+  //       }
+  //     );
+  //   },
+  //   { deep: true }
+  // );
 
   const lists = computed(() => tripList.value);
+  const searchData = computed(() => searchdata);
 
   return {
     initTripItems,
     getTripItems,
+    getTripList,
     select,
+    searchData,
     keyword,
     items,
     selected,

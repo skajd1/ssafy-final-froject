@@ -9,7 +9,7 @@ function getGugun(sidocode, success, fail) {
 }
 
 function getTripInfo(param, success, fail) {
-  myaxios.get("/trip/list", param).then(success).catch(fail);
+  myaxios.post("/trip/list", param).then(success).catch(fail);
 }
 
 function getTripInfoById(id, success, fail) {
@@ -19,4 +19,4 @@ function getTripInfoByTitle(title, success, fail) {
   myaxios.get(`/trip/title/${title}`).then(success).catch(fail);
 }
 
-export { getGugun, getSido, getTripInfoById, getTripInfoByTitle };
+export { getGugun, getSido, getTripInfo, getTripInfoById, getTripInfoByTitle };

@@ -6,14 +6,23 @@ import { storeToRefs } from "pinia";
 
 const tripStore = useTripStore();
 
-const { lists } = storeToRefs(tripStore);
-
-watch(lists, () => {
-  trips.value = lists;
-  console.log(trips.value);
-});
+const { lists, searchData } = storeToRefs(tripStore);
+const { getTripList } = tripStore;
 
 const trips = ref([]);
+watch(lists, () => {
+  trips.value = lists;
+
+  // console.log(trips.value);
+});
+watch(
+  searchData,
+  () => {
+    getTripList();
+    // console.log(searchData.value);
+  },
+  { deep: true }
+);
 </script>
 <template>
   <div class="container">
@@ -22,7 +31,7 @@ const trips = ref([]);
     <!-- 필터에 맞는 컴포넌트가 여러개 조회된다. -->
     <!-- 가로로 스크롤바 -->
     <div id="items">
-      <item v-for="trip in trips" :key="trip.tid" :t="trip"></item>
+      <item v-for="trip in trips" :t="trip"></item>
     </div>
   </div>
 </template>
