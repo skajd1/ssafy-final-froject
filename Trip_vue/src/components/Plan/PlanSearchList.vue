@@ -50,16 +50,39 @@ const filterThema = () => {};
 <style lang="scss" scoped>
 .container {
   width: 300px;
-  height: 300px;
+  height: 380px;
 
-  background-color: var(--main-color);
+  /* border: 1px solid var(--main-color); */
+  border-radius: 10px;
+  box-shadow: 0 0 5px var(--main-color);
+
+  p {
+    text-align: center;
+    font-size: 20px;
+    margin: 10px;
+    font-weight: bold;
+  }
 
   #items {
     overflow-y: auto;
     margin: 1 auto;
     padding: 0;
     width: 100%;
-    height: 100%;
+    height: 320px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  /* 
+  ::-webkit-scrollbar-track {
+    background-color: var(--main-color-bg);
+    box-shadow: 0 0 5px var(--main-color);
+  } */
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+    border-radius: 10px;
   }
 }
 </style>

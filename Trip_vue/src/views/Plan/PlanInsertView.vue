@@ -22,7 +22,7 @@ import PlanInsertSideBar from "@/components/Plan/PlanInsertSideBar.vue";
 }
 .mapbox {
   width: 85%;
-  height: 743px;
+  height: 750px;
 }
 .right-sidebar {
   align-items: right;

@@ -15,39 +15,39 @@ function showModal() {
 <template>
   <PlanDetail :t="t" v-if="useModal == true" @close-modal="useModal = false" />
 
-  <div class="item" @click="showModal()">
-    <h3>{{ t.title }}</h3>
+  <div class="item">
     <div id="imgbox">
-      <img :src="t.firstImage" alt="사진" />
+      <img v-if="t.firstImage" :src="t.firstImage" alt="사진" />
+      <img v-else src="@/assets/logo0.svg" alt="사진" />
     </div>
+    <p>{{ t.title }}</p>
   </div>
 </template>
 
-<style scoped>
-/* .item {
+<style lang="scss" scoped>
+.item {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 1rem;
-  padding: 0.5rem;
-  white-space: nowrap;
-  width: 600px;
-  height: 60rem;
+  flex-direction: row;
+  margin: 5px;
 
-  border: 1px solid rgb(12, 11, 11);
-  border-radius: 0.5rem;
+  /* box-shadow: 0 0 5px var(--main-color); */
+  height: 90px;
+  background-color: white;
+  border-radius: 10px;
+
+  P {
+    margin: 10px 10px 0px 10px;
+    font-weight: bold;
+    color: var(--main-color);
+  }
+
+  #imgbox {
+    margin-left: 10px;
+    margin-top: 20px;
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
 }
-#imgbox {
-  width: 600px;
-  height: 100%;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  padding: 0.5rem;
-}
-img {
-  width: 100%;
-  height: 100%;
-  border-radius: 0.5rem;
-} */
 </style>
