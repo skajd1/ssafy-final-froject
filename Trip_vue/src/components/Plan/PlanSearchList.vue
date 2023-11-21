@@ -19,7 +19,6 @@ watch(
   searchData,
   () => {
     getTripList();
-    // console.log(searchData.value);
   },
   { deep: true }
 );

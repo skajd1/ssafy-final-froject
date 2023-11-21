@@ -16,12 +16,13 @@
     
 	<select id="getInfoBySidoGugunTitle" parameterType="String" resultType = "TripInfo">
         select * from attraction_info where title like concat('%',#{keyword},'%')
-		<if test="sidoCode != null">
+		<if test = "sidoCode != ''">
 			and sido_code = #{sidoCode}
 		</if>
-		<if test="gugunCode != null">
+		<if test = "gugunCode != ''">
 			and gugun_code = #{gugunCode}
 		</if>
+		
     </select>
     
 	<select id="getInfoAll" resultType="TripInfo">

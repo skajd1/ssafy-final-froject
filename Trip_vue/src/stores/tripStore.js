@@ -63,6 +63,11 @@ const useTripStore = defineStore("useTripStore", () => {
       searchdata,
       (res) => {
         tripList.value = res.data;
+        console.log(searchdata);
+        console.log(res.data);
+        setTimeout(() => {
+          console.log(res);
+        }, 1000);
       },
       (err) => {
         console.log(err);
