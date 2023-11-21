@@ -66,6 +66,7 @@ function search() {
   // 시도, 구군, 테마 코드에 맞는 관광지 리스트 가져오기
   // -> keyword는 null이여도 그냥 ''로 넘겨도 된다.
   // null이 아니면 where절에 동적 쿼리로 추가하기.
+  api;
 }
 function selectTheme(themaCode) {
   if (chooseThema.value.includes(themaCode)) {

@@ -1,13 +1,14 @@
 package com.mvc.controller;
 
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,10 +43,12 @@ public class TripInfoController {
     }
     
     @ApiOperation(value = "시/도 및 구/군 및 여행 테마로 필터링 된 여행지 반환")
-    @GetMapping("/sido/{sido}/gugun/{gugun}/type/{type}")
-    public List<TripInfo> searchBySidoGugunType(@PathVariable("sido") String sidoCode, @PathVariable("gugun") String gugunCode, @PathVariable("type") String typeId){
-		return service.searchBySidoGugunType(sidoCode, gugunCode, typeId);
+    @PostMapping("/list")
+    public List<TripInfo> searchBySidoGugunTitle(@RequestBody Map<String, String> map){
+    	return service.searchBySidoGugunTitle(map);
+    	
     }
+    
 	
 	@ApiOperation(value="전체 관광지 리스트",notes="모든 여행지 정보를 반환한다")
 	@GetMapping("/all")

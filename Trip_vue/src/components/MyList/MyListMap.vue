@@ -9,11 +9,13 @@ const { selected: selected, items: tripItems } = storeToRefs(store);
 var map;
 const positions = ref([]);
 const markers = ref([]);
+const infoWindows = ref([]);
 const props = defineProps({});
 watch(
   selected,
   () => {
     map.setCenter(new kakao.maps.LatLng(selected.value.latitude, selected.value.longitude));
+    console.log(selected.value);
   },
   { deep: true }
 );
@@ -68,6 +70,18 @@ const loadMarkers = () => {
     });
 
     markers.value.push(marker);
+
+    let infoWindow = new kakao.maps.InfoWindow({
+      position: position.latlng,
+      content:
+        '<div style="width:150px;text-align:center;padding:6px 0;">' + position.title + "</div>",
+    });
+    kakao.maps.event.addListener(marker, "click", () => {
+      infoWindow.open(map, marker);
+    });
+
+    // infoWindow.open(map, marker);
+    infoWindows.value.push(infoWindow);
   });
 
   map.setCenter(positions.value[0].latlng);
