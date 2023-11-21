@@ -1,9 +1,8 @@
 <script setup>
 import { RouterLink, useRoute } from "vue-router";
 import { usePlanStore } from "@/stores/planStore";
-import { storeToRefs } from "pinia";
-import { watch } from "vue";
-import VKaKaoMap from "@/components/common/VKaKaoMap.vue";
+
+import VKaKaoMap from "@/components/MyList/MyListMap.vue";
 import TimeLine from "@/components/MyList/TimeLine.vue";
 
 const route = useRoute();

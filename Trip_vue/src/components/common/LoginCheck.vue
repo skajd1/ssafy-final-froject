@@ -6,7 +6,7 @@ import { useRouter } from "vue-router";
 const store = useUserStore();
 const router = useRouter();
 const { isLogin, userInfo } = storeToRefs(store);
-console.log(userInfo.value);
+// console.log(userInfo.value);
 
 const logout = () => {
   store.logout();
