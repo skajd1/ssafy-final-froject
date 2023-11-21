@@ -5,8 +5,7 @@ import { getGugun, getSido } from "@/api/TripApi.js";
 import { useTripStore } from "@/stores/tripStore";
 
 const tripStore = useTripStore();
-const { sido, gugun } = storeToRefs(tripStore);
-const { addTema } = tripStore;
+const { sido, gugun, thema } = storeToRefs(tripStore);
 
 const chooseSido = ref("");
 const chooseGugun = ref("");
@@ -63,9 +62,16 @@ function selectTheme(themaCode) {
     chooseThema.value = chooseThema.value.filter((item) => item !== themaCode);
   } else {
     chooseThema.value.push(themaCode);
-    addTema(themaCode);
   }
 }
+
+watch(
+  chooseThema,
+  () => {
+    thema.value = chooseThema.value;
+  },
+  { deep: true }
+);
 
 // function search() {
 //   if (chooseSido.value === "") {
@@ -136,10 +142,10 @@ function selectTheme(themaCode) {
           </span>
         </div>
 
-        <div class="btn-group">
+        <!-- <div class="btn-group">
           <input type="button" value="검색" id="btnInsert" @click="search()" />
           <input type="reset" value="초기화" id="btnInit" />
-        </div>
+        </div> -->
       </form>
     </div>
   </div>

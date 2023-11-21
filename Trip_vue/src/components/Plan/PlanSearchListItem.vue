@@ -10,11 +10,11 @@ const useModal = ref(false);
 function showModal() {
   useModal.value = true;
 }
-// console.log(props.t);
 </script>
 
 <template>
   <PlanDetail :t="t" v-if="useModal == true" @close-modal="useModal = false" />
+
   <div class="item" @click="showModal()">
     <h3>{{ t.title }}</h3>
     <div id="imgbox">
@@ -24,7 +24,7 @@ function showModal() {
 </template>
 
 <style scoped>
-.item {
+/* .item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,5 +49,5 @@ img {
   width: 100%;
   height: 100%;
   border-radius: 0.5rem;
-}
+} */
 </style>

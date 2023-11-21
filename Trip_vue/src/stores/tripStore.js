@@ -11,8 +11,6 @@ const useTripStore = defineStore("useTripStore", () => {
     tripItems.value = [];
   };
 
-  const key = ref("");
-
   const getTripItems = (cid) => {
     getTripInfoById(
       cid,
@@ -28,10 +26,6 @@ const useTripStore = defineStore("useTripStore", () => {
   const select = (trip) => {
     selectedTrip.value = trip;
   };
-  const keyword = computed({
-    get: () => key.value,
-    set: (value) => (key.value = value),
-  });
   const items = computed(() => tripItems.value);
   const selected = computed(() => selectedTrip.value);
 
@@ -42,7 +36,12 @@ const useTripStore = defineStore("useTripStore", () => {
     sido: "",
     gugun: "",
   });
-  const thema = reactive([]);
+  const themalist = reactive([]);
+
+  const keyword = computed({
+    get: () => searchdata.keyword,
+    set: (value) => (searchdata.keyword = value),
+  });
 
   const sido = computed({
     get: () => searchdata.sido,
@@ -54,42 +53,22 @@ const useTripStore = defineStore("useTripStore", () => {
     set: (value) => (searchdata.gugun = value),
   });
 
-  const addTema = (themaCode) => {
-    thema.push(themaCode);
-  };
+  const thema = computed({
+    get: () => themalist.value,
+    set: (value) => (themalist.value = value),
+  });
 
   const getTripList = () => {
     getTripInfo(
       searchdata,
       (res) => {
         tripList.value = res.data;
-        console.log(searchdata);
-        console.log(res.data);
-        setTimeout(() => {
-          console.log(res);
-        }, 1000);
       },
       (err) => {
         console.log(err);
       }
     );
   };
-
-  // watch(
-  //   thema,
-  //   () => {
-  //     getTripInfo(
-  //       searchdata,
-  //       (res) => {
-  //         tripList.value = res.data;
-  //       },
-  //       (err) => {
-  //         console.log(err);
-  //       }
-  //     );
-  //   },
-  //   { deep: true }
-  // );
 
   const lists = computed(() => tripList.value);
   const searchData = computed(() => searchdata);
@@ -99,15 +78,15 @@ const useTripStore = defineStore("useTripStore", () => {
     getTripItems,
     getTripList,
     select,
-    searchData,
-    keyword,
     items,
     selected,
-    addTema,
-    lists,
+    searchData,
+    keyword,
     sido,
     gugun,
+    themalist,
     thema,
+    lists,
   };
 });
 

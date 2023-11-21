@@ -46,7 +46,6 @@ public class TripInfoController {
     @PostMapping("/list")
     public List<TripInfo> searchBySidoGugunTitle(@RequestBody Map<String, String> map){
     	return service.searchBySidoGugunTitle(map);
-    	
     }
     
 	
