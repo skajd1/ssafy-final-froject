@@ -2,7 +2,7 @@
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import item from "./TripListItem.vue";
-import { getTripInfo, getTripInfoByTitle } from "@/api/TripApi.js";
+import { getTripInfoByTitle } from "@/api/TripApi.js";
 // import { getTripInfo } from "@/api/TripApi";
 const router = useRouter();
 const route = useRoute();
