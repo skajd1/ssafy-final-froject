@@ -37,6 +37,11 @@ const trips = ref([]);
 </template>
 
 <style scoped>
+.container {
+  width: 300px;
+  background-color: var(--main-color);
+}
+
 #items {
   display: flex;
   flex-wrap: nowrap;

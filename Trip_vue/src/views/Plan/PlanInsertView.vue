@@ -5,7 +5,6 @@ import PlanInsertSideBar from "@/components/Plan/PlanInsertSideBar.vue";
 </script>
 
 <template>
-  <div>계획 등록 뷰</div>
   <div class="plan">
     <PlanSearchSideBar />
     <div class="mapbox">

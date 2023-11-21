@@ -1,5 +1,5 @@
 <script setup>
-import PlanSearch from "@/components/Plan/PlanSearch.vue";
+import PlanSearchDetail from "@/components/Plan/PlanSearchDetail.vue";
 import PlanSearchList from "@/components/Plan/PlanSearchList.vue";
 import PlanSearchBar from "@/components/Plan/PlanSearchBar.vue";
 import { ref } from "vue";
@@ -25,7 +25,7 @@ const ToggleMenu = () => {
 
     <div class="menu">
       <PlanSearchBar />
-      <PlanSearch />
+      <PlanSearchDetail />
       <PlanSearchList />
     </div>
   </aside>
