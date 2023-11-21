@@ -1,6 +1,7 @@
 package com.mvc.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.mvc.vo.Gugun;
 import com.mvc.vo.Sido;
@@ -17,7 +18,7 @@ public interface TripInfoService {
 
 	List<TripInfo> searchTitle(String word);
 	
-	List<TripInfo> searchBySidoGugunType(String sidoCode, String gugunCode, String typeId);
+	List<TripInfo> searchBySidoGugunTitle(Map<String, String> map);
 	
 	List<Sido> getSidoList();
 	List<Gugun> getGugunList(String sidoCode);

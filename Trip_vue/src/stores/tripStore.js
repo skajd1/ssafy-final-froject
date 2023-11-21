@@ -1,4 +1,4 @@
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, watch } from "vue";
 import { defineStore } from "pinia";
 import { getTripInfoById } from "@/api/TripApi.js";
 import { getTripInfo } from "@/api/TripApi.js";
@@ -36,12 +36,13 @@ const useTripStore = defineStore("useTripStore", () => {
   const selected = computed(() => selectedTrip.value);
 
   // 여행지 조회
-  const tripList = ref([]);
+  const tripList = reactive([]);
   const searchdata = reactive({
     keyword: "",
     sido: "",
     gugun: "",
   });
+  const thema = reactive([]);
 
   const sido = computed({
     get: () => searchdata.sido,
@@ -53,24 +54,43 @@ const useTripStore = defineStore("useTripStore", () => {
     set: (value) => (searchdata.gugun = value),
   });
 
-  const tema = computed({
-    get: () => searchdata.gugun,
-    set: (value) => (searchdata.tema = value),
-  });
+  const addTema = (themaCode) => {
+    thema.push(themaCode);
+  };
+
+  watch(
+    searchdata,
+    () => {
+      getTripInfo(
+        searchdata,
+        (res) => {
+          tripList.value = res.data;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    },
+    { deep: true }
+  );
+
+  watch(
+    thema,
+    () => {
+      getTripInfo(
+        searchdata,
+        (res) => {
+          tripList.value = res.data;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    },
+    { deep: true }
+  );
 
   const lists = computed(() => tripList.value);
-
-  const getTripList = () => {
-    getTripInfo(
-      searchdata,
-      (res) => {
-        tripList.value = res.data;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  };
 
   return {
     initTripItems,
@@ -79,11 +99,11 @@ const useTripStore = defineStore("useTripStore", () => {
     keyword,
     items,
     selected,
-    getTripList,
+    addTema,
     lists,
     sido,
     gugun,
-    tema,
+    thema,
   };
 });
 

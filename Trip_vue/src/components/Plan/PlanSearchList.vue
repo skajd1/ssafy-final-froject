@@ -1,16 +1,17 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, watch } from "vue";
 import item from "@/components/Plan/PlanSearchListItem.vue";
 import { useTripStore } from "@/stores/tripStore";
 import { storeToRefs } from "pinia";
 
-// const tripStore = useTripStore();
+const tripStore = useTripStore();
 
-// const { triplists } = storeToRefs(tripStore);
+const { lists } = storeToRefs(tripStore);
 
-// watch(triplists, () => {
-//   trips.value = triplists.value;
-// });
+watch(lists, () => {
+  trips.value = lists;
+  console.log(trips.value);
+});
 
 const trips = ref([]);
 </script>

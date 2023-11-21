@@ -14,6 +14,7 @@ watch(
   selected,
   () => {
     map.setCenter(new kakao.maps.LatLng(selected.value.latitude, selected.value.longitude));
+    map.setLevel(selected.value.mlevel);
   },
   { deep: true }
 );

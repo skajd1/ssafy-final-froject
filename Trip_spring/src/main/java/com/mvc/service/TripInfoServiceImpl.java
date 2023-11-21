@@ -50,13 +50,17 @@ public class TripInfoServiceImpl implements TripInfoService{
 		return mapper.getSidoList();
 	}
 
-	@Override
-	public List<TripInfo> searchBySidoGugunType(String sidoCode, String gugunCode, String typeId) {
-		return mapper.getInfoBySidoGugunType(sidoCode,gugunCode,typeId);
-	}
+
 
 	@Override
 	public List<TripInfo> searchById(String id) {
 		return mapper.getInfoById(id);
+	}
+
+	@Override
+	public List<TripInfo> searchBySidoGugunTitle(Map<String, String> map) {
+
+		
+		return mapper.getInfoBySidoGugunTitle(map.get("sido"), map.get("gugun"), map.get("keyword"));
 	}
 }

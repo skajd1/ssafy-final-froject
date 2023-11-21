@@ -5,7 +5,8 @@ import { getGugun, getSido } from "@/api/TripApi.js";
 import { useTripStore } from "@/stores/tripStore";
 
 const tripStore = useTripStore();
-const { sido, gugun, thema } = storeToRefs(tripStore);
+const { sido, gugun } = storeToRefs(tripStore);
+const { addTema } = tripStore;
 
 const chooseSido = ref("");
 const chooseGugun = ref("");
@@ -31,7 +32,6 @@ onMounted(() => {
   getSido(
     (res) => {
       sidolist.value = res.data;
-      console.log(sidolist.value);
     },
     (error) => {
       console.log(error);
@@ -63,12 +63,9 @@ function selectTheme(themaCode) {
     chooseThema.value = chooseThema.value.filter((item) => item !== themaCode);
   } else {
     chooseThema.value.push(themaCode);
+    addTema(themaCode);
   }
 }
-
-watch(chooseThema, () => {
-  thema.value = chooseThema.value;
-});
 
 // function search() {
 //   if (chooseSido.value === "") {
