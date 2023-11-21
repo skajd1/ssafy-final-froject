@@ -88,7 +88,7 @@ router.beforeEach((to, from) => {
 
   if (to.name !== "Home" && to.name !== "Login" && to.name !== "Join" && !isLogin.value) {
     alert("로그인이 필요합니다.");
-    return { name: "Login" };
+    return { name: "Home" };
   }
 });
 

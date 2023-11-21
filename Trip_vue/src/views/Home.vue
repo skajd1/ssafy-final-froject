@@ -11,6 +11,7 @@ import { storeToRefs } from "pinia";
 const router = useRouter();
 const userStore = useUserStore();
 const store = useTripStore();
+const userstore = useUserStore();
 
 const { isLogin } = storeToRefs(userStore); // 로그인 여부
 const { keyword: keyword } = storeToRefs(store);
@@ -38,18 +39,27 @@ const changeJoinFrom = () => {
 const goMain = () => {
   router.push("/main");
 };
+
+const logout = () => {
+  userstore.logout();
+  alert("로그아웃 되었습니다.");
+  router.push({ name: "Home" });
+};
 </script>
 
 <template>
   <div id="container">
-    <div id="title">
-      <h1>
-        <span @click="goMain()"> 어디로 가냥?<img src="@/assets/logo1.svg" /> </span>
-      </h1>
-    </div>
-    <div v-if="isLogin == true" id="SearchBar">
-      <Search></Search>
-      <button @click="search">검색</button>
+    <h1>
+      <span id="goMain" @click="goMain()"> 어디로 가냥?<img src="@/assets/logo1.svg" /> </span>
+    </h1>
+    <div v-if="isLogin == true" id="SearchPage">
+      <div id="SearchBar">
+        <Search></Search>
+        <button @click="search">검색</button>
+      </div>
+      <div>
+        <input type="button" value="로그아웃" @click="logout()" />
+      </div>
     </div>
     <div v-else>
       <div id="userbar">
@@ -112,7 +122,29 @@ button {
     font-size: 30px;
     color: var(--main-color);
     padding: 5px 20px;
-    margin: 100px 30px 0 30px;
+    margin: 100px 0px 0 30px;
+  }
+}
+
+#SearchPage {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  input {
+    background-color: transparent;
+    border-radius: 30px;
+    border: none;
+
+    text-align: center;
+    font-size: 30px;
+    color: var(--main-color);
+    padding: 5px 20px;
+    margin-top: 100px;
+    margin-right: 100px;
+
+    font-size: 20px;
   }
 }
 
