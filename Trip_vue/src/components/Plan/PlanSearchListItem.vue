@@ -10,7 +10,6 @@ const useModal = ref(false);
 function showModal() {
   useModal.value = true;
 }
-console.log(props.t);
 </script>
 
 <template>

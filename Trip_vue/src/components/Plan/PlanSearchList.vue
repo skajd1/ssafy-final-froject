@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, reactive } from "vue";
 import item from "@/components/Plan/PlanSearchListItem.vue";
 import { useTripStore } from "@/stores/tripStore";
 import { storeToRefs } from "pinia";
@@ -9,21 +9,22 @@ const tripStore = useTripStore();
 const { lists, searchData } = storeToRefs(tripStore);
 const { getTripList } = tripStore;
 
-const trips = ref([]);
+const trips = reactive([]);
+
 watch(lists, () => {
   trips.value = lists;
-
-  // console.log(trips.value);
 });
+
 watch(
   searchData,
   () => {
     getTripList();
-    // console.log(searchData.value);
+    console.log(searchData.value);
   },
   { deep: true }
 );
 </script>
+
 <template>
   <div class="container">
     <h2>여행지 조회 목록</h2>
