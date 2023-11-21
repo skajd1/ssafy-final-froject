@@ -12,28 +12,28 @@ const sidolist = ref([]);
 
 watch(chooseSido, () => {
   //sido 코드가 변할 때 마다 비동기로 gugun 리스트 가져와서 gugun 리스트에 저장
-  getGugun(
-    chooseSido.value,
-    (res) => {
-      chooseGugun.value = "";
-      gugunlist.value = res.data;
-    },
-    (e) => {
-      console.log(e);
-    }
-  );
+  // getGugun(
+  //   chooseSido.value,
+  //   (res) => {
+  //     chooseGugun.value = "";
+  //     gugunlist.value = res.data;
+  //   },
+  //   (e) => {
+  //     console.log(e);
+  //   }
+  // );
 });
 
 onMounted(() => {
-  getSido(
-    (res) => {
-      sidolist.value = res.data;
-      console.log(sidolist.value);
-    },
-    (error) => {
-      console.log(error);
-    }
-  );
+  // getSido(
+  //   (res) => {
+  //     sidolist.value = res.data;
+  //     console.log(sidolist.value);
+  //   },
+  //   (error) => {
+  //     console.log(error);
+  //   }
+  // );
 });
 
 const themalist = ref([
@@ -66,7 +66,6 @@ function search() {
   // 시도, 구군, 테마 코드에 맞는 관광지 리스트 가져오기
   // -> keyword는 null이여도 그냥 ''로 넘겨도 된다.
   // null이 아니면 where절에 동적 쿼리로 추가하기.
-  api;
 }
 function selectTheme(themaCode) {
   if (chooseThema.value.includes(themaCode)) {

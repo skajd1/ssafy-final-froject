@@ -16,6 +16,7 @@ watch(
   () => {
     map.setCenter(new kakao.maps.LatLng(selected.value.latitude, selected.value.longitude));
     console.log(selected.value);
+    infoWindows.value.forEach((infoWindow) => infoWindow.close());
   },
   { deep: true }
 );
@@ -50,6 +51,8 @@ function setPosition() {
     positions.value.push({
       title: item.title,
       latlng: new kakao.maps.LatLng(item.latitude, item.longitude),
+      addr: item.addr1,
+      tel: item.tel,
     });
   });
   console.log(positions.value);
@@ -73,8 +76,21 @@ const loadMarkers = () => {
 
     let infoWindow = new kakao.maps.InfoWindow({
       position: position.latlng,
-      content:
-        '<div style="width:150px;text-align:center;padding:6px 0;">' + position.title + "</div>",
+      content: `
+        <div style="width:240px;height:160px;text-align:center;padding:6px 0;">
+            <div>
+            ${position.title}
+            </div>
+            <div>
+              ${position.addr}
+            </div>
+            <div>
+              ${position.tel}
+            </div>              
+        </div>
+
+          
+        `,
     });
     kakao.maps.event.addListener(marker, "click", () => {
       infoWindow.open(map, marker);
