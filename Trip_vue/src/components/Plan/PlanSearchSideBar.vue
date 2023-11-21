@@ -36,7 +36,8 @@ aside {
   display: flex;
   flex-direction: column;
   width: calc(2rem + 32px);
-  min-height: 75vh;
+
+  height: 750px;
   overflow: hidden;
 
   padding: 1rem;
