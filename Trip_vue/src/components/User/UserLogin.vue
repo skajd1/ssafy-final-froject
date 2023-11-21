@@ -29,50 +29,44 @@ const userLogin = async () => {
 
 <template>
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <h2 class="my-3 py-3 shadow-sm bg-light text-center">로그인</h2>
+    <form>
+      <div class="bar">
+        <label for="userid" class="form-label">아이디 : </label>
+        <input type="text" class="form-control" v-model="loginUser.userId" placeholder="아이디" />
       </div>
-      <div class="col-lg-10">
-        <form>
-          <div class="mb-3 text-start">
-            <label for="userid" class="form-label">아이디 : </label>
-            <input
-              type="text"
-              class="form-control"
-              v-model="loginUser.userId"
-              placeholder="아이디"
-            />
-          </div>
-          <div class="mb-3 text-start">
-            <label for="userpwd" class="form-label">비밀번호 : </label>
-            <input
-              type="password"
-              class="form-control"
-              v-model="loginUser.userPwd"
-              @keyup.enter="userLogin"
-              placeholder="비밀번호"
-            />
-          </div>
-          <!-- <div id="remember" class="form-check mb-3 float-end">
+      <div>
+        <label for="userpwd" class="form-label">비밀번호 : </label>
+        <input
+          type="password"
+          class="form-control"
+          v-model="loginUser.userPwd"
+          @keyup.enter="userLogin"
+          placeholder="비밀번호"
+        />
+      </div>
+      <!-- <div id="remember" class="form-check mb-3 float-end">
             <input class="form-check-input" type="checkbox" id="saveid" />
             <label class="form-check-label" for="saveid"> 아이디저장 </label>
           </div> -->
-          <div class="col-auto text-center">
-            <button type="button" class="btn btn-outline-primary mb-3" @click="userLogin">
-              로그인
-            </button>
-            <button type="button" class="btn btn-outline-success ms-1 mb-3">회원가입</button>
-          </div>
-        </form>
+      <div class="col-auto text-center">
+        <button type="button" class="btn btn-outline-primary mb-3" @click="userLogin">
+          로그인
+        </button>
       </div>
-    </div>
+    </form>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .container {
   color: var(--main-color);
+  display: flex;
+  justify-content: center;
+  width: 1000px;
+
+  form {
+    width: 100%;
+  }
 }
 
 #remember {
@@ -81,5 +75,9 @@ const userLogin = async () => {
   input {
     margin-right: 0.5rem;
   }
+}
+
+button {
+  margin-top: 20px;
 }
 </style>
