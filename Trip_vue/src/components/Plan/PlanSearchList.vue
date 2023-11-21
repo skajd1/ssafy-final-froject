@@ -1,5 +1,5 @@
 <script setup>
-import { watch, reactive } from "vue";
+import { ref, watch, reactive } from "vue";
 import item from "@/components/Plan/PlanSearchListItem.vue";
 import { useTripStore } from "@/stores/tripStore";
 import { storeToRefs } from "pinia";
@@ -9,11 +9,12 @@ const tripStore = useTripStore();
 const { lists, searchData, thema } = storeToRefs(tripStore);
 const { getTripList } = tripStore;
 
-const trips = reactive([]);
+const trips = ref([]);
+const trips_copied = reactive([]);
 
 watch(lists, () => {
   trips.value = lists;
-  console.log(trips.value);
+  trips_copied.value = lists;
 });
 
 watch(
@@ -27,12 +28,22 @@ watch(
 watch(
   thema,
   () => {
-    filterThema();
+    console.log(thema.value);
+    filterTripList();
   },
   { deep: true }
 );
-
-const filterThema = () => {};
+const filterTripList = () => {
+  trips.value = [];
+  trips_copied.value.forEach((trip) => {
+    thema.value.forEach((t) => {
+      if (parseInt(trip.contentTypeId) === parseInt(t)) {
+        trips.value.push(trip);
+      }
+    });
+  });
+  console.log(trips.value);
+};
 </script>
 
 <template>

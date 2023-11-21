@@ -2,10 +2,13 @@
 import { RouterView } from "vue-router";
 import { useRoute } from "vue-router";
 import Header from "./components/common/Header.vue";
+import spinnder from "./components/common/Spinner.vue";
 import { ref, watch } from "vue";
 import Footer from "./components/common/Footer.vue";
 const route = useRoute();
 const name = ref("");
+const LoadingStatus = ref(false);
+
 watch(
   route,
   () => {
@@ -21,6 +24,7 @@ watch(
   <RouterView />
 
   <!-- <Footer></Footer> -->
+  <spinner :loading="LoadingStatus"></spinner>
 </template>
 
 <style>

@@ -17,7 +17,8 @@ function showModal() {
   <div class="item" @click="showModal()">
     <h3>{{ t.title }}</h3>
     <div id="imgbox">
-      <img :src="t.firstImage" alt="사진" />
+      <img v-if="t.firstImage" :src="t.firstImage" alt="사진" />
+      <img v-else src="@/assets/logo0.svg" alt="사진" />
     </div>
   </div>
 </template>
