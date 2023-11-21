@@ -4,36 +4,37 @@ import { getTripInfoById } from "@/api/TripApi";
 import { storeToRefs } from "pinia";
 import { useTripStore } from "@/stores/tripStore";
 const tstore = useTripStore();
-const { tripItems: tripItems } = storeToRefs(tstore);
+const { select } = tstore;
+const { items: storeTripItems } = storeToRefs(tstore);
 
 const props = defineProps({
   planItem: Object,
+  index: Number,
 });
-const plan = ref({});
+// const plan = ref({});
 const title = ref("");
 const imgsrc = ref("");
-const tmp = [];
-
-getTripInfoById(
-  props.planItem.content_id,
-  (res) => {
-    plan.value = res.data;
-    title.value = plan.value[0].title;
-    imgsrc.value = plan.value[0].firstImage;
-    // tripItems.value.push(plan.value[0]);
-    tmp.push(props.planItem.content_id);
-  },
-  (err) => {
-    console.log(err);
-  }
-);
+let tripInfo = {};
+function selectTrip() {
+  select(tripInfo);
+}
+setTimeout(() => {
+  storeTripItems.value.forEach((item) => {
+    if (item.contentId == props.planItem.content_id) {
+      tripInfo = item;
+      title.value = item.title;
+      imgsrc.value = item.firstImage;
+    }
+  });
+}, 500);
 </script>
 
 <template>
   <div class="timeline-item">
     {{ planItem.date.split(" ")[0] }}
     {{ title }}
-    <img :src="imgsrc" />
+    <img :src="imgsrc" @click="selectTrip" />
+
     {{ planItem.comment }}
   </div>
 </template>

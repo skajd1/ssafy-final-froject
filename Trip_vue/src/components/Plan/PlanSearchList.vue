@@ -1,26 +1,16 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
 import item from "@/components/Plan/PlanSearchListItem.vue";
-import { getTripInfo } from "@/api/TripApi.js";
-const route = useRoute();
-onMounted(() => {
-  let sido = route.params.sido;
-  let gugun = route.params.gugun;
-  let typeid = route.params.theme;
-  getTripInfo(
-    sido,
-    gugun,
-    typeid,
-    (res) => {
-      console.log(res.data);
-      trips.value = res.data;
-    },
-    (e) => {
-      console.log(e);
-    }
-  );
-});
+import { useTripStore } from "@/stores/tripStore";
+import { storeToRefs } from "pinia";
+
+// const tripStore = useTripStore();
+
+// const { triplists } = storeToRefs(tripStore);
+
+// watch(triplists, () => {
+//   trips.value = triplists.value;
+// });
 
 const trips = ref([]);
 </script>

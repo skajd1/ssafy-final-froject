@@ -1,5 +1,5 @@
 <script setup>
-import kmap from "@/components/common/VKakaoMap.vue";
+import PlanMap from "@/components/Plan/PlanMap.vue";
 import PlanSearchSideBar from "@/components/Plan/PlanSearchSidebar.vue";
 import PlanInsertSideBar from "@/components/Plan/PlanInsertSideBar.vue";
 </script>
@@ -8,7 +8,7 @@ import PlanInsertSideBar from "@/components/Plan/PlanInsertSideBar.vue";
   <div class="plan">
     <PlanSearchSideBar />
     <div class="mapbox">
-      <kmap></kmap>
+      <PlanMap />
     </div>
     <div class="right-sidebar">
       <PlanInsertSideBar />

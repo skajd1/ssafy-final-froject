@@ -1,19 +1,11 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
 import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
 import { getGugun, getSido } from "@/api/TripApi.js";
-import { tripStore } from "@/stores/tripStore";
+import { useTripStore } from "@/stores/tripStore";
 
-const router = useRouter();
-const tripstore = tripStore();
-
-const { keyword } = storeToRefs(tripstore);
-
-const key = storeToRefs(key);
-const sido = storeToRefs(sido);
-const gugun = storeToRefs(gugun);
-const thema = storeToRefs(thema);
+const tripStore = useTripStore();
+const { sido, gugun, thema } = storeToRefs(tripStore);
 
 const chooseSido = ref("");
 const chooseGugun = ref("");
@@ -58,27 +50,14 @@ const themalist = ref([
   { themaCode: "39", themaName: "음식점" },
 ]);
 
-function search() {
-  if (chooseSido.value === "") {
-    alert("시/도를 선택하세요");
-    return;
-  }
-  if (chooseGugun.value === "") {
-    alert("구/군을 선택하세요");
-    return;
-  }
-  if (chooseThema.value.length === 0) {
-    alert("테마를 선택하세요");
-    return;
-  }
-  console.log(chooseSido.value);
-  console.log(chooseGugun.value);
-  console.log(chooseThema.value);
+watch(chooseSido, () => {
+  sido.value = chooseSido.value;
+});
 
-  // 시도, 구군, 테마 코드에 맞는 관광지 리스트 가져오기
-  // -> keyword는 null이여도 그냥 ''로 넘겨도 된다.
-  // null이 아니면 where절에 동적 쿼리로 추가하기.
-}
+watch(chooseGugun, () => {
+  gugun.value = chooseGugun.value;
+});
+
 function selectTheme(themaCode) {
   if (chooseThema.value.includes(themaCode)) {
     chooseThema.value = chooseThema.value.filter((item) => item !== themaCode);
@@ -86,6 +65,38 @@ function selectTheme(themaCode) {
     chooseThema.value.push(themaCode);
   }
 }
+
+watch(chooseThema, () => {
+  thema.value = chooseThema.value;
+});
+
+// function search() {
+//   if (chooseSido.value === "") {
+//     alert("시/도를 선택하세요");
+//     return;
+//   }
+//   if (chooseGugun.value === "") {
+//     alert("구/군을 선택하세요");
+//     return;
+//   }
+//   if (chooseThema.value.length === 0) {
+//     alert("테마를 선택하세요");
+//     return;
+//   }
+//   console.log(chooseSido.value);
+//   console.log(chooseGugun.value);
+//   console.log(chooseThema.value);
+
+//   // 시도, 구군, 테마 코드에 맞는 관광지 리스트 가져오기
+//   // -> keyword는 null이여도 그냥 ''로 넘겨도 된다.
+//   // null이 아니면 where절에 동적 쿼리로 추가하기.
+
+//   sido.value = chooseSido.value;
+//   gugun.value = chooseGugun.value;
+//   thema.value = chooseThema.value;
+
+//   getTripList();
+// }
 </script>
 
 <template>

@@ -5,16 +5,20 @@ import { storeToRefs } from "pinia";
 import { useTripStore } from "@/stores/tripStore";
 import TimeLineItem from "@/components/MyList/TimeLineItem.vue";
 const tstore = useTripStore();
-const { initItems } = tstore;
-
+const { initTripItems, getTripItems } = tstore;
+// const { items: storeTripItems } = storeToRefs(tstore);
 const store = usePlanStore();
 const { items: storePlanItems } = storeToRefs(store);
-const planItem = ref({});
+const planItems = ref({});
 watch(
   storePlanItems,
   () => {
-    planItem.value = storePlanItems.value;
-    initItems();
+    console.log("일정 캐시 초기화");
+    initTripItems();
+    planItems.value = storePlanItems.value;
+    planItems.value.forEach((item) => {
+      getTripItems(item.content_id);
+    });
   },
   { deep: true }
 );
@@ -22,7 +26,7 @@ watch(
 
 <template>
   <div class="itembox">
-    <TimeLineItem v-for="item in planItem" :planItem="item" />
+    <TimeLineItem v-for="(item, index) in planItems" :planItem="item" :index="index" />
   </div>
 </template>
 

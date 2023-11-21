@@ -33,14 +33,14 @@ onMounted(() => {
 const initMap = () => {
   const container = document.getElementById("map");
   const options = {
-    center: new kakao.maps.LatLng(33.450701, 126.570667),
-    level: 10,
+    center: new kakao.maps.LatLng(37.5013, 127.0397),
+    level: 13,
   };
   map = new kakao.maps.Map(container, options);
-  setTimeout(() => {
-    setPosition();
-    loadMarkers();
-  }, 500);
+  // setTimeout(() => {
+  //   setPosition();
+  //   loadMarkers();
+  // }, 500);
 };
 function setPosition() {
   positions.value = [];

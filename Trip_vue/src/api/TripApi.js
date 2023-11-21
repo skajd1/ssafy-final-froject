@@ -7,9 +7,15 @@ function getSido(success, fail) {
 function getGugun(sidocode, success, fail) {
   myaxios.get(`/trip/sido/${sidocode}`).then(success).catch(fail);
 }
-function getTripInfo(sidoCode, gugunCode, typeid, success, fail) {
-  myaxios.get(`/trip/sido/${sidoCode}/gugun/${gugunCode}/type/${typeid}`).then(success).catch(fail);
+
+// function getTripInfo(sidoCode, gugunCode, typeid, success, fail) {
+//   myaxios.get(`/trip/sido/${sidoCode}/gugun/${gugunCode}/type/${typeid}`).then(success).catch(fail);
+// }
+
+function getTripInfo(param, success, fail) {
+  myaxios.get("/trip/list", param).then(success).catch(fail);
 }
+
 function getTripInfoById(id, success, fail) {
   myaxios.get(`/trip/list/${id}`).then(success).catch(fail);
 }
