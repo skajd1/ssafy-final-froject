@@ -15,14 +15,20 @@ const loginUser = ref({
 });
 
 const userLogin = async () => {
+  if (loginUser.value.userId === "" || loginUser.value.userPwd === "") {
+    // alert("아이디와 비밀번호를 입력해주세요.");
+    return;
+  }
+
   await login(loginUser.value.userId, loginUser.value.userPwd);
 
   console.log("isLogin: ", isLogin.value);
 
-  if (isLogin) {
+  if (isLogin.value) {
     getUserInfo(loginUser.value.userId);
-
     router.push("/main");
+  } else {
+    alert("아이디와 비밀번호를 확인해주세요.");
   }
 };
 </script>
@@ -49,9 +55,7 @@ const userLogin = async () => {
             <label class="form-check-label" for="saveid"> 아이디저장 </label>
           </div> -->
       <div class="col-auto text-center">
-        <button type="button" class="btn btn-outline-primary mb-3" @click="userLogin">
-          로그인
-        </button>
+        <button type="button" @click="userLogin">로그인</button>
       </div>
     </form>
   </div>
@@ -66,18 +70,44 @@ const userLogin = async () => {
 
   form {
     width: 100%;
+
+    div {
+      margin: 5px;
+      margin-bottom: 10px;
+    }
   }
 }
-
+/*
 #remember {
   margin-top: 1rem;
 
   input {
     margin-right: 0.5rem;
   }
-}
+} */
 
 button {
-  margin-top: 20px;
+  margin-top: 30px;
+  background-color: var(--main-color);
+  color: white;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+
+  &:hover {
+    background-color: var(--main-color);
+    color: var(--main-color-bg);
+  }
+
+  &:active {
+    background-color: var(--main-color);
+    color: var(--main-color-bg);
+  }
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
 }
 </style>

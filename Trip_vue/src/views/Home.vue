@@ -63,8 +63,18 @@ const logout = () => {
     </div>
     <div v-else>
       <div id="userbar">
-        <input type="button" value="로그인" @click="changeLoginFrom()" />
-        <input type="button" value="회원가입" @click="changeJoinFrom()" />
+        <input
+          type="button"
+          value="로그인"
+          @click="changeLoginFrom()"
+          :class="loginFrom ? 'onform' : 'offform'"
+        />
+        <input
+          type="button"
+          value="회원가입"
+          @click="changeJoinFrom()"
+          :class="registFrom ? 'onform' : 'offform'"
+        />
       </div>
       <div class="userSector" v-if="loginFrom === true">
         <Login />
@@ -112,17 +122,36 @@ button {
   display: flex;
   justify-content: center;
   margin: 0 auto;
+}
 
-  input {
-    background-color: transparent;
-    border-radius: 30px;
-    border: none;
+.onform {
+  background-color: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid var(--main-color);
 
-    text-align: center;
-    font-size: 30px;
-    color: var(--main-color);
-    padding: 5px 20px;
-    margin: 100px 0px 0 30px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--main-color);
+  padding: 5px 20px;
+  margin: 100px 0px 0 30px;
+}
+
+.offform {
+  background-color: transparent;
+  border-radius: 30px;
+  border: none;
+
+  text-align: center;
+  font-size: 30px;
+  color: var(--main-color);
+  padding: 5px 20px;
+  margin: 100px 0px 0 30px;
+
+  &:hover {
+    font-weight: bold;
   }
 }
 

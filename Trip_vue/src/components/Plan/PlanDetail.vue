@@ -1,7 +1,7 @@
 <script setup>
-import { ref } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { usePlanStore } from "@/stores/planStore";
-defineProps({ t: Object });
+const props = defineProps({ t: Object });
 
 const planStore = usePlanStore();
 const { addPlanItem } = planStore;
@@ -18,6 +18,10 @@ const inputInsertItem = () => {
   addPlanItem([date.value, cost.value, memo.value]);
   closeModal();
 };
+
+const openBrowser = () => {
+  window.open("https://search.naver.com/search.naver?query=" + props.t.title);
+};
 </script>
 
 <template>
@@ -27,13 +31,43 @@ const inputInsertItem = () => {
         <div id="img-box">
           <img v-if="t.firstImage" :src="t.firstImage" alt="사진" />
           <img v-else src="@/assets/logo0.svg" alt="사진" />
+          <button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              fill="currentColor"
+              class="bi bi-heart"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"
+              />
+            </svg>
+          </button>
         </div>
         <div class="text-box">
           <h4>{{ t.title }}</h4>
           <div class="addr-saerch">
             <p>{{ t.addr1 }}</p>
-            <input type="button" value="네이버 검색" />
+            <!-- <input type="button" value="네이버 검색" @click="openBrowser" /> -->
             <!-- 네이버 url 검색 + 이모티콘으로 교체 -->
+
+            <button class="search" @click="openBrowser">
+              네이버
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-search"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+                />
+              </svg>
+            </button>
           </div>
         </div>
         <div class="input-data">
@@ -64,6 +98,16 @@ const inputInsertItem = () => {
 </template>
 
 <style lang="scss" scoped>
+button {
+  background-color: var(--main-color);
+  color: white;
+  font-weight: bold;
+  border-radius: 3px;
+  border: none;
+  margin: 5px;
+  padding: 5px;
+}
+
 .black-bg {
   width: 100%;
   height: 100%;
@@ -94,6 +138,15 @@ const inputInsertItem = () => {
       max-height: 400px;
       overflow-y: auto;
       border-radius: 10px;
+      position: relative;
+
+      button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        height: 40px;
+        background-color: transparent;
+      }
 
       img {
         width: 100%;
@@ -163,16 +216,6 @@ const inputInsertItem = () => {
       display: flex;
       justify-content: end;
       margin: 10px;
-
-      button {
-        background-color: var(--main-color);
-        color: white;
-        font-weight: bold;
-        border-radius: 3px;
-        border: none;
-        margin: 5px;
-        padding: 5px;
-      }
     }
   }
 }

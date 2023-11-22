@@ -25,7 +25,10 @@ const logout = () => {
         ><input class="btn" type="button" value="회원가입"
       /></RouterLink>
     </div>
-    <div v-else><input type="button" class="btn" value="로그아웃" @click="logout()" /></div>
+    <div v-else>
+      <input type="button" class="logout-btn" value="마이페이지" />
+      <input type="button" class="logout-btn" value="로그아웃" @click="logout()" />
+    </div>
   </div>
 </template>
 
@@ -36,8 +39,11 @@ const logout = () => {
   margin-right: 10px;
 }
 
-.btn {
+.logout-btn {
   background-color: transparent;
+  color: var(--main-color);
+  font-size: 2rem;
+  border: none;
 
   &:focus {
     border: none;
@@ -46,7 +52,7 @@ const logout = () => {
   }
 
   &:hover {
-    background-color: transparent;
+    font-weight: bold;
   }
 }
 </style>
