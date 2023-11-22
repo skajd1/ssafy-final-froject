@@ -1,7 +1,11 @@
-<script setup></script>
+<script setup>
+const props = defineProps({ plan: Object });
+</script>
 
 <template>
-  <div></div>
+  <div class="item">
+    {{ plan.title }}
+  </div>
 </template>
 
 <style scoped></style>
