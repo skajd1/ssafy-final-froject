@@ -36,7 +36,7 @@ const useTripStore = defineStore("useTripStore", () => {
     sido: "",
     gugun: "",
   });
-  const themalist = reactive([]);
+  const themelist = reactive([]);
 
   const keyword = computed({
     get: () => searchdata.keyword,
@@ -53,9 +53,9 @@ const useTripStore = defineStore("useTripStore", () => {
     set: (value) => (searchdata.gugun = value),
   });
 
-  const thema = computed({
-    get: () => themalist.value,
-    set: (value) => (themalist.value = value),
+  const theme = computed({
+    get: () => themelist.value,
+    set: (value) => (themelist.value = value),
   });
 
   const getTripList = () => {
@@ -84,8 +84,8 @@ const useTripStore = defineStore("useTripStore", () => {
     keyword,
     sido,
     gugun,
-    themalist,
-    thema,
+    themelist,
+    theme,
     lists,
   };
 });

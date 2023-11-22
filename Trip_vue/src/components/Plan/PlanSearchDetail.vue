@@ -5,11 +5,11 @@ import { getGugun, getSido } from "@/api/TripApi.js";
 import { useTripStore } from "@/stores/tripStore";
 
 const tripStore = useTripStore();
-const { sido, gugun, thema } = storeToRefs(tripStore);
+const { sido, gugun, theme } = storeToRefs(tripStore);
 
 const chooseSido = ref("");
 const chooseGugun = ref("");
-const chooseThema = ref([]);
+const chooseTheme = ref([]);
 const gugunlist = ref([]);
 const sidolist = ref([]);
 
@@ -38,15 +38,15 @@ onMounted(() => {
   );
 });
 
-const themalist = ref([
-  { themaCode: "12", themaName: "관광지" },
-  { themaCode: "14", themaName: "문화시설" },
-  { themaCode: "15", themaName: "축제공연행사" },
-  { themaCode: "25", themaName: "여행코스" },
-  { themaCode: "28", themaName: "레포츠" },
-  { themaCode: "32", themaName: "숙박" },
-  { themaCode: "38", themaName: "쇼핑" },
-  { themaCode: "39", themaName: "음식점" },
+const themelist = ref([
+  { themeCode: "12", themeName: "관광지" },
+  { themeCode: "14", themeName: "문화시설" },
+  { themeCode: "15", themeName: "축제공연행사" },
+  { themeCode: "25", themeName: "여행코스" },
+  { themeCode: "28", themeName: "레포츠" },
+  { themeCode: "32", themeName: "숙박" },
+  { themeCode: "38", themeName: "쇼핑" },
+  { themeCode: "39", themeName: "음식점" },
 ]);
 
 watch(chooseSido, () => {
@@ -57,18 +57,18 @@ watch(chooseGugun, () => {
   gugun.value = chooseGugun.value;
 });
 
-function selectTheme(themaCode) {
-  if (chooseThema.value.includes(themaCode)) {
-    chooseThema.value = chooseThema.value.filter((item) => item !== themaCode);
+function selectTheme(themeCode) {
+  if (chooseTheme.value.includes(themeCode)) {
+    chooseTheme.value = chooseTheme.value.filter((item) => item !== themeCode);
   } else {
-    chooseThema.value.push(themaCode);
+    chooseTheme.value.push(themeCode);
   }
 }
 
 watch(
-  chooseThema,
+  chooseTheme,
   () => {
-    thema.value = chooseThema.value;
+    theme.value = chooseTheme.value;
   },
   { deep: true }
 );
@@ -128,17 +128,17 @@ watch(
           </div>
         </div>
 
-        <div class="form-group thema">
+        <div class="form-group theme">
           <!-- checkbox -->
-          <span v-for="(thema, index) in themalist" :key="thema.themaCode">
+          <span v-for="(theme, index) in themelist" :key="theme.themeCode">
             <input
               type="checkbox"
-              :name="thema.themaCode"
-              :value="thema.themaCode"
-              @click="selectTheme(thema.themaCode)"
+              :name="theme.themeCode"
+              :value="theme.themeCode"
+              @click="selectTheme(theme.themeCode)"
             />
 
-            <label :for="thema.themaCode">{{ thema.themaName }}</label>
+            <label :for="theme.themeCode">{{ theme.themeName }}</label>
           </span>
         </div>
 
@@ -152,7 +152,7 @@ watch(
 </template>
 
 <style lang="scss" scoped>
-.thema {
+.theme {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
