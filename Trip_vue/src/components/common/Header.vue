@@ -56,19 +56,40 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  background-color: var(--main-color);
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+}
+nav a.router-link-exact-active:focus {
+  background-color: var(--main-color);
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
 }
 
 nav a.router-link-exact-active:hover {
-  background-color: transparent;
+  text-decoration: none;
+  color: white;
+  font-weight: normal;
 }
-
+nav a:focus {
+  text-decoration: none;
+  color: var(--main-color);
+  font-weight: normal;
+}
 nav a {
   display: inline-block;
   padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
 
+  /* border-left: 1px solid var(--color-border); */
+}
+nav a:hover {
+  color: var(--main-color);
+  font-weight: bold;
+
+  text-decoration: none;
+}
 nav a:first-of-type {
   border: 0;
 }

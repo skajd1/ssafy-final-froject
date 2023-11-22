@@ -9,7 +9,6 @@ const props = defineProps({
   index: Number,
 });
 const tripStore = useTripStore();
-const planStore = usePlanStore();
 
 // 해당 여행지의 썸네일 이미지와 타이틀을 보여주는 컴포넌트
 // 클릭하면 TripDetail 모달이 새로 뜬다. 거기엔 해당 여행지의 상세 정보가 담긴다.
