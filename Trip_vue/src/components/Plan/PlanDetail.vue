@@ -1,20 +1,16 @@
 <script setup>
 import { ref } from "vue";
-import { useTripStore } from "@/stores/tripStore";
 import { usePlanStore } from "@/stores/planStore";
-import { storeToRefs } from "pinia";
 defineProps({ t: Object });
 
-const tripStore = useTripStore();
 const planStore = usePlanStore();
-const { addPlanItem } = tripStore;
+const { addPlanItem } = planStore;
 
 const date = ref("");
 const cost = ref(0);
 const memo = ref("");
 const emit = defineEmits(["closeModal"]);
 function closeModal() {
-  //store의 useModal false로 변경
   emit("closeModal");
 }
 
@@ -41,7 +37,7 @@ const inputInsertItem = () => {
           </div>
         </div>
         <div class="input-data">
-          <form>
+          <div class="form-box">
             <div class="date-cost">
               <div>
                 <label for="date">날짜</label>
@@ -56,7 +52,7 @@ const inputInsertItem = () => {
             <label for="memo">메모</label>
             <textarea placeholder="메모 작성하기.." v-model="memo"></textarea>
             <!-- <input id="memo" type="textarea" /> -->
-          </form>
+          </div>
         </div>
         <div class="modal-btn">
           <button @click="inputInsertItem()">일정 추가</button>
@@ -128,7 +124,7 @@ const inputInsertItem = () => {
     }
 
     .input-data {
-      form {
+      .form-box {
         display: flex;
         flex-direction: column;
         margin: 10px;
