@@ -54,7 +54,7 @@ const filterTripList = () => {
     <!-- 여행지 썸네일과 그 타이틀이 하나의 컴포넌트가 되고, -->
     <!-- 필터에 맞는 컴포넌트가 여러개 조회된다. -->
     <div id="items">
-      <item v-for="trip in trips" :t="trip"></item>
+      <item v-for="(trip, index) in trips" :t="trip" :index="index"></item>
     </div>
   </div>
 </template>

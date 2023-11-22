@@ -1,14 +1,62 @@
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import PlanInsertConfirm from "@/components/Plan/PlanInsertConfirm.vue";
+import PlanInsertList from "@/components/Plan/PlanInsertList.vue";
+import PlanInsertInfo from "@/components/Plan/PlanInsertInfo.vue";
+const useModal = ref(false);
+const confirmInsert = () => {
+  useModal.value = true;
+  // 일정 제목을 입력할 모달창 띄우기
+  // 제목 설정 후 등록 버튼 누르면 세션 uid 및 제목으로 plan 테이블 1개 생성
+  // 그 후 store에 담긴 등록할 일정 planitem 테이블에 insert
+};
+</script>
 
 <template>
-  <div>123123</div>
+  <div class="InsertSideBar">
+    <PlanInsertConfirm v-if="useModal == true" @close-modal="useModal = false" />
+    <div class="list">
+      <PlanInsertList />
+    </div>
+    <div class="list-info">
+      <PlanInsertInfo />
+    </div>
+    <div class="btn-box">
+      <button @click="confirmInsert()">등록</button>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-div {
-  position: sticky;
-  border: 1px solid gray;
+.InsertSideBar {
   width: 300px;
   height: 743px;
+}
+.list {
+  width: 100%;
+  height: 70%;
+  border: 1px solid gray;
+}
+.list-info {
+  width: 100%;
+  height: 25%;
+  border: 1px solid gray;
+}
+.btn-box {
+  width: 100%;
+  height: 5%;
+
+  display: flex;
+  justify-content: center;
+}
+button {
+  width: 50%;
+  height: 100%;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--main-color);
+  color: white;
+  font-weight: bold;
+  font-size: 1.4rem;
 }
 </style>

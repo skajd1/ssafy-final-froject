@@ -42,7 +42,7 @@ aside {
 
   padding: 1rem;
   position: fixed;
-  z-index: 10;
+  z-index: 5;
 
   background-color: var(--main-color-bg);
   color: white;
