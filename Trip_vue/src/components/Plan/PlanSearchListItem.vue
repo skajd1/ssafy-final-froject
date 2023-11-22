@@ -1,13 +1,18 @@
 <script setup>
-import { ref } from "vue";
-import PlanDetail from "@/components/Plan/PlanDetail.vue";
+import { ref, watch } from "vue";
+// import PlanDetail from "@/components/Plan/PlanDetail.vue";
 import { useTripStore } from "@/stores/tripStore";
-const props = defineProps({ t: Object });
+import { usePlanStore } from "@/stores/planStore";
+import { storeToRefs } from "pinia";
+const props = defineProps({
+  t: Object,
+  index: Number,
+});
 const tripStore = useTripStore();
+const planStore = usePlanStore();
 
 // 해당 여행지의 썸네일 이미지와 타이틀을 보여주는 컴포넌트
 // 클릭하면 TripDetail 모달이 새로 뜬다. 거기엔 해당 여행지의 상세 정보가 담긴다.
-const useModal = ref(false);
 
 const select = (trip) => {
   tripStore.select(trip);
@@ -15,7 +20,7 @@ const select = (trip) => {
 </script>
 
 <template>
-  <PlanDetail :t="t" v-if="useModal == true" @close-modal="useModal = false" />
+  <!-- <PlanDetail :t="t" v-if="modal == true" @close-modal="useModal = false" /> -->
 
   <div class="item" @click="select(t)">
     <div id="imgbox">

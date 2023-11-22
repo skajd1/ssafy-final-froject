@@ -1,8 +1,12 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
 import { useTripStore } from "@/stores/tripStore";
+import { usePlanStore } from "@/stores/planStore";
 import { storeToRefs } from "pinia";
+import PlanDetail from "@/components/Plan/PlanDetail.vue";
 const store = useTripStore();
+
+const useModal = ref(false);
 
 const { selected: selected, items: tripItems } = storeToRefs(store);
 
@@ -52,7 +56,11 @@ const select = (item) => {
     title: item.title,
     clickable: true,
   });
+
   selectedMarker = marker;
+  kakao.maps.event.addListener(marker, "click", () => {
+    useModal.value = true;
+  });
 };
 
 const deleteMarkers = () => {
@@ -63,6 +71,7 @@ const deleteMarkers = () => {
 </script>
 
 <template>
+  <PlanDetail :t="selected" v-if="useModal == true" @close-modal="useModal = false" />
   <div id="map"></div>
 </template>
 

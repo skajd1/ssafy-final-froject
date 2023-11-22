@@ -1,18 +1,20 @@
 <script setup>
 import { ref } from "vue";
 import { useTripStore } from "@/stores/tripStore";
-
+import { usePlanStore } from "@/stores/planStore";
+import { storeToRefs } from "pinia";
 defineProps({ t: Object });
-const emit = defineEmits(["closeModal"]);
 
 const tripStore = useTripStore();
+const planStore = usePlanStore();
 const { addPlanItem } = tripStore;
 
 const date = ref("");
 const cost = ref(0);
 const memo = ref("");
-
+const emit = defineEmits(["closeModal"]);
 function closeModal() {
+  //store의 useModal false로 변경
   emit("closeModal");
 }
 
@@ -73,7 +75,7 @@ const inputInsertItem = () => {
   position: fixed;
   left: 0;
   top: 0;
-
+  z-index: 6;
   display: flex;
   justify-content: center;
   align-items: center;
