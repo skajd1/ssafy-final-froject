@@ -9,9 +9,6 @@ const tripStore = useTripStore();
 // 클릭하면 TripDetail 모달이 새로 뜬다. 거기엔 해당 여행지의 상세 정보가 담긴다.
 const useModal = ref(false);
 
-function showModal() {
-  useModal.value = true;
-}
 const select = (trip) => {
   tripStore.select(trip);
 };

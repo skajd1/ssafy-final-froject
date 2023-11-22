@@ -49,8 +49,6 @@ aside {
 
   transition: 0.2s ease-out;
 
-  position: fixed;
-
   .logo {
     margin-bottom: 1rem;
 
