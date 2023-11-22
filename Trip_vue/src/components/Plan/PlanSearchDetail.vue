@@ -1,11 +1,11 @@
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted, reactive } from "vue";
 import { storeToRefs } from "pinia";
 import { getGugun, getSido } from "@/api/TripApi.js";
 import { useTripStore } from "@/stores/tripStore";
 
 const tripStore = useTripStore();
-const { sido, gugun, thema } = storeToRefs(tripStore);
+const { sido, gugun, thema, lists } = storeToRefs(tripStore);
 
 const chooseSido = ref("");
 const chooseGugun = ref("");
@@ -136,6 +136,7 @@ watch(
               :name="thema.themaCode"
               :value="thema.themaCode"
               @click="selectTheme(thema.themaCode)"
+              v-bind:disabled="lists == null"
             />
 
             <label :for="thema.themaCode">{{ thema.themaName }}</label>

@@ -71,6 +71,7 @@ const useTripStore = defineStore("useTripStore", () => {
   };
 
   const lists = computed(() => tripList.value);
+
   const searchData = computed(() => searchdata);
 
   return {
