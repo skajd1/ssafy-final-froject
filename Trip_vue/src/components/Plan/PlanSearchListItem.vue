@@ -15,7 +15,7 @@ function showModal() {
 <template>
   <PlanDetail :t="t" v-if="useModal == true" @close-modal="useModal = false" />
 
-  <div class="item">
+  <div class="item" @click="showModal()">
     <div id="imgbox">
       <img v-if="t.firstImage" :src="t.firstImage" alt="사진" />
       <img v-else src="@/assets/logo0.svg" alt="사진" />
