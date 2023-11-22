@@ -15,7 +15,7 @@ function closeModal() {
 }
 
 const inputInsertItem = () => {
-  addPlanItem([date.value, cost.value, memo.value]);
+  addPlanItem([date.value, cost.value, memo.value, props.t]);
   closeModal();
 };
 
@@ -218,5 +218,13 @@ button {
       margin: 10px;
     }
   }
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+  border-radius: 10px;
 }
 </style>

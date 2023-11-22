@@ -15,6 +15,7 @@ const confirmInsert = () => {
 <template>
   <div class="InsertSideBar">
     <PlanInsertConfirm v-if="useModal == true" @close-modal="useModal = false" />
+    <div class="title">선택한 일정</div>
     <div class="list">
       <PlanInsertList />
     </div>
@@ -30,17 +31,28 @@ const confirmInsert = () => {
 <style scoped>
 .InsertSideBar {
   width: 300px;
-  height: 743px;
+  height: 750px;
+  background-color: var(--main-color-bg);
+}
+.title {
+  width: 100%;
+  height: 5%;
+  font-size: 2.5rem;
+
+  font-weight: bold;
+  color: white;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
 }
 .list {
   width: 100%;
   height: 70%;
-  border: 1px solid gray;
 }
 .list-info {
   width: 100%;
-  height: 25%;
-  border: 1px solid gray;
+  height: 15%;
 }
 .btn-box {
   width: 100%;

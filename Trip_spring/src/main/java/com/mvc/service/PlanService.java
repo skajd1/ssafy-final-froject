@@ -15,6 +15,6 @@ public interface PlanService {
 
 		int insertPlanByUid(Plan p);
 
-		int insertPlanDetail(PlanDetail pd);
+		int insertPlanDetail(PlanDetail pd, String pid);
 
 }
