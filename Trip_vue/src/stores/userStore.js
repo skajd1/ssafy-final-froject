@@ -59,13 +59,14 @@ const useUserStore = defineStore(
       };
     };
 
-    const user = computed(() => session.value);
+    const user = computed(() => userInfo.value);
     return {
       login,
       logout,
       getUserInfo,
       userInfo,
       isLogin,
+      user,
     };
   },
   { persist: true }

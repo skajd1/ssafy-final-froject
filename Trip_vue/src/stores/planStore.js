@@ -1,6 +1,6 @@
 import { ref, computed, reactive } from "vue";
 import { defineStore } from "pinia";
-import { getMyPlans, getPlanItems } from "@/api/PlanApi.js";
+import { getMyPlans, getPlanItems, makePlan, insertPlanItems } from "@/api/PlanApi.js";
 
 const usePlanStore = defineStore("usePlanStore", () => {
   //1. state
@@ -43,13 +43,31 @@ const usePlanStore = defineStore("usePlanStore", () => {
   const id = ref(1);
   const plandetail = reactive([]); // { date, cost, memo }
 
-  const addPlanItem = ([date, cost, memo]) => {
-    plandetail.push({ id: id.value++, date: date, cost: cost, memo: memo });
-    console.log(plandetail);
+  const addPlanItem = ([date, cost, memo, content]) => {
+    plandetail.push({ id: id.value++, date: date, cost: cost, memo: memo, content: content });
   };
   const deletePlanItem = (id) => {
     let index = plandetail.findIndex((todoItem) => todoItem.id === id);
     plandetail.splice(index, 1);
+  };
+
+  const tmpItems = computed(() => plandetail);
+
+  // 일정 테이블 생성
+  const makePlanTable = (uid, title) => {
+    let pid;
+    makePlan(
+      uid,
+      title,
+      (res) => {
+        console.log("생성된 pid :" + res.data);
+        pid = res.data;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+    return pid;
   };
 
   return {
@@ -58,9 +76,11 @@ const usePlanStore = defineStore("usePlanStore", () => {
     planItems,
     items,
     insert,
+    tmpItems,
 
     addPlanItem,
     deletePlanItem,
+    makePlanTable,
   };
 });
 

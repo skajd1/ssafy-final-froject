@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { usePlanStore } from "@/stores/planStore";
-defineProps({ t: Object });
+const props = defineProps({ t: Object });
 
 const planStore = usePlanStore();
 const { addPlanItem } = planStore;
@@ -15,7 +15,7 @@ function closeModal() {
 }
 
 const inputInsertItem = () => {
-  addPlanItem([date.value, cost.value, memo.value]);
+  addPlanItem([date.value, cost.value, memo.value, props.t]);
   closeModal();
 };
 </script>
@@ -175,5 +175,13 @@ const inputInsertItem = () => {
       }
     }
   }
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+  border-radius: 10px;
 }
 </style>

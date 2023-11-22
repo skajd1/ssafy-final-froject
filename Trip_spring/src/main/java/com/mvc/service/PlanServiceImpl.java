@@ -31,12 +31,15 @@ public class PlanServiceImpl implements PlanService{
 
 	@Override
 	public int insertPlanByUid(Plan p) {
-		
-		return mapper.insertPlanByUid(p);
+		int res = mapper.insertPlanByUid(p);
+		System.out.println(p.getPid());
+		return res;
 	}
 
+
 	@Override
-	public int insertPlanDetail(PlanDetail pd) {
+	public int insertPlanDetail(PlanDetail pd, String pid) {
+		pd.setPid(Integer.parseInt(pid));
 		return mapper.insertPlanDetail(pd);
 	}
 

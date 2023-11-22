@@ -1,9 +1,19 @@
 <script setup>
+import { usePlanStore } from "@/stores/planStore";
+import { storeToRefs } from "pinia";
+import { useUserStore } from "@/stores/userStore";
+const planStore = usePlanStore();
+const userStore = useUserStore();
+const { makePlanTable } = planStore;
+const { user } = storeToRefs(userStore);
 const emit = defineEmits(["closeModal"]);
 
+const title = ref("");
+const pid = ref("");
 function insert() {
   closeModal();
-  console.log("insert");
+  console.log("insert시작");
+  pid.value = makePlanTable(user.uid, title);
 }
 function closeModal() {
   emit("closeModal");
@@ -16,7 +26,7 @@ function closeModal() {
       <div class="white-bg">
         <div class="title">일정의 제목을 입력해주세요</div>
         <div class="input-box">
-          <input type="text" placeholder="어디가냥" />
+          <input type="text" placeholder="어디가냥" v-model="title" />
         </div>
         <div class="btn-box">
           <button @click="insert()">등록</button>

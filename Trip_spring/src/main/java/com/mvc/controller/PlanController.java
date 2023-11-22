@@ -38,15 +38,13 @@ public class PlanController {
 	
 	@ApiOperation(value = "일정 테이블 생성",notes = "유저 아이디를 포함한 일정 테이블 생성")
 	@PostMapping("/plan")
-	public String makePlan(@RequestBody Plan p) {
+	public int makePlan(@RequestBody Plan p) {
+		return service.insertPlanByUid(p);
 		
-		int res = service.insertPlanByUid(p);
-		if(res == 1) return "추가 완료";
-		return "추가 실패 . . . ";
 	}
-	@PostMapping("/plandetails")
-	public String insertDetail(@RequestBody PlanDetail pd) {
-		int res = service.insertPlanDetail(pd);
+	@PostMapping("/plandetails/{pid}")
+	public String insertDetail(@RequestBody PlanDetail pd, @PathVariable String pid) {
+		int res = service.insertPlanDetail(pd,pid);
 		if(res == 1) return "추가 완료";
 		return "추가 실패 . . . ";
 	}
