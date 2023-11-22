@@ -73,11 +73,11 @@ const useTripStore = defineStore("useTripStore", () => {
   const searchData = computed(() => searchdata);
 
   // 여행지 추가
-  const id = ref(1);
+  // const id = ref(1);
   const plandetail = reactive([]); // { date, cost, memo }
 
   const addPlanItem = ([date, cost, memo]) => {
-    plandetail.push({ id: id.value++, date: date, cost: cost, memo: memo });
+    plandetail.push({ date: date, cost: cost, memo: memo });
     console.log(plandetail.value);
   };
   const deletePlanItem = (id) => {
