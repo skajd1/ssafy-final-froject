@@ -6,15 +6,15 @@ import { storeToRefs } from "pinia";
 
 const tripStore = useTripStore();
 
-const { lists, searchData, thema } = storeToRefs(tripStore);
+const { lists, searchData, theme } = storeToRefs(tripStore);
 const { getTripList } = tripStore;
 
 const trips = ref([]);
 const trips_copied = reactive([]);
 
 watch(lists, () => {
-  trips.value = lists;
-  trips_copied.value = lists;
+  trips.value = lists.value;
+  trips_copied.value = lists.value;
 });
 
 watch(
@@ -26,23 +26,25 @@ watch(
 );
 
 watch(
-  thema,
+  theme,
   () => {
-    console.log(thema.value);
     filterTripList();
   },
   { deep: true }
 );
 const filterTripList = () => {
+  if (theme.value.length === 0) {
+    trips.value = trips_copied.value;
+    return;
+  }
   trips.value = [];
   trips_copied.value.forEach((trip) => {
-    thema.value.forEach((t) => {
+    theme.value.forEach((t) => {
       if (parseInt(trip.contentTypeId) === parseInt(t)) {
         trips.value.push(trip);
       }
     });
   });
-  console.log(trips.value);
 };
 </script>
 
@@ -51,9 +53,8 @@ const filterTripList = () => {
     <p>여행지 조회 목록</p>
     <!-- 여행지 썸네일과 그 타이틀이 하나의 컴포넌트가 되고, -->
     <!-- 필터에 맞는 컴포넌트가 여러개 조회된다. -->
-    <!-- 가로로 스크롤바 -->
     <div id="items">
-      <item v-for="trip in trips.value" :t="trip"></item>
+      <item v-for="trip in trips" :t="trip"></item>
     </div>
   </div>
 </template>
