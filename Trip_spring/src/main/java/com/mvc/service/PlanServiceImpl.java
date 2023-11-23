@@ -44,4 +44,9 @@ public class PlanServiceImpl implements PlanService{
 		return mapper.insertPlanDetail(pd);
 	}
 
+	@Override
+	public int deletePlanByPid(String pid) {
+		return mapper.deletePlan(Integer.parseInt(pid));
+	}
+
 }

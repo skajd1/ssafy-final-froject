@@ -50,7 +50,10 @@ const logout = () => {
 <template>
   <div id="container">
     <h1>
-      <span id="goMain" @click="goMain()"> 어디로 가냥?<img src="@/assets/logo1.svg" /> </span>
+      <span id="goMain" @click="goMain()">
+        어디로 가냥?
+        <img src="@/assets/logo1.svg" />
+      </span>
     </h1>
     <div v-if="isLogin == true" id="SearchPage">
       <div id="SearchBar">

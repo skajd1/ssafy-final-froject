@@ -3,6 +3,10 @@ import { ref, watch, reactive } from "vue";
 import item from "@/components/Plan/PlanSearchListItem.vue";
 import { useTripStore } from "@/stores/tripStore";
 import { storeToRefs } from "pinia";
+import { useUserStore } from "@/stores/userStore";
+
+const userStore = useUserStore();
+const { loadingStart, loadingEnd } = userStore;
 
 const tripStore = useTripStore();
 
@@ -20,7 +24,9 @@ watch(lists, () => {
 watch(
   searchData,
   () => {
+    loadingStart();
     getTripList();
+    loadingEnd();
   },
   { deep: true }
 );

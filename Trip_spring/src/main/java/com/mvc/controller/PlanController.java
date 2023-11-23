@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +43,12 @@ public class PlanController {
 		return service.insertPlanByUid(p);
 		
 	}
+	@ApiOperation(value = "일정 테이블 삭제",notes = "테이블을 삭제하고 해당 pid를 갖고있는 모든 여행지도 삭제")
+	@DeleteMapping("/plan/{pid}")
+	public int deletePlan(@PathVariable String pid) {
+		return service.deletePlanByPid(pid);
+	}
+	@ApiOperation(value = "일정 테이블에 여행지 추가",notes = "여행지 정보를 파라미터로 하여 일정에 여행지 및 코멘트, 예산 등의 정보 삽입")
 	@PostMapping("/plandetails/{pid}")
 	public String insertDetail(@RequestBody PlanDetail pd, @PathVariable String pid) {
 		int res = service.insertPlanDetail(pd,pid);

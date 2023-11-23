@@ -2,6 +2,8 @@ import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import { loginConfirm, getInfo, regist, changePw, deleteAccount } from "@/api/UserApi.js";
 // 라우터 변경 테스트 해보기
+const isLoading = ref(false);
+
 const useUserStore = defineStore(
   "useUserStore",
   () => {
@@ -58,7 +60,13 @@ const useUserStore = defineStore(
         admin: false,
       };
     };
-
+    const loadingStart = () => {
+      isLoading.value = true;
+    };
+    const loadingEnd = () => {
+      isLoading.value = false;
+    };
+    const load = computed(() => isLoading.value);
     const user = computed(() => userInfo.value);
     return {
       login,
@@ -67,6 +75,9 @@ const useUserStore = defineStore(
       userInfo,
       isLogin,
       user,
+      load,
+      loadingStart,
+      loadingEnd,
     };
   },
   { persist: true }

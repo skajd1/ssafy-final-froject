@@ -4,6 +4,10 @@ import { storeToRefs } from "pinia";
 import { useUserStore } from "@/stores/userStore";
 import { makePlan, insertPlanItems } from "@/api/PlanApi";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
 const planStore = usePlanStore();
 const userStore = useUserStore();
 const { tmpItems } = storeToRefs(planStore);
@@ -40,6 +44,12 @@ function insert() {
         );
       });
       alert("일정이 등록되었습니다.");
+      // mylist의 일정 세부 사항으로 이동
+      router.push({
+        name: "MyListDetail",
+        params: { pid: pid.value },
+        query: { title: title.value },
+      });
     },
     (e) => {
       console.log(e);

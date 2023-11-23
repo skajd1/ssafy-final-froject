@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <h1>footer 입니당</h1>
+    <img src="@/assets/logo0.svg" alt="logo" />
   </div>
 </template>
 

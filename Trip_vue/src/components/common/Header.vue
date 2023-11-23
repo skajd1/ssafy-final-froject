@@ -23,7 +23,7 @@ if (c < 0.7) {
         <RouterLink :to="{ name: 'Main' }">메인 화면</RouterLink>
         <RouterLink :to="{ name: 'MyList' }">나의 일정</RouterLink>
         <RouterLink :to="{ name: 'PlanInsert' }">일정 등록</RouterLink>
-        <RouterLink :to="{ name: 'BoardList' }">일정 공유하기</RouterLink>
+        <!-- <RouterLink :to="{ name: 'BoardList' }">일정 공유하기</RouterLink> -->
       </div>
       <div>
         <LoginCheck />

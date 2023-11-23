@@ -1,46 +1,84 @@
 <script setup>
 import { defineProps, ref } from "vue";
-const props = defineProps({ item: Object });
+import { usePlanStore } from "@/stores/planStore";
+
+const planStore = usePlanStore();
+const { deletePlanItem } = planStore;
+
+const props = defineProps({ item: Object, key: Number });
 const imgsrc = ref("");
 imgsrc.value = props.item.content.firstImage;
 </script>
 
 <template>
   <div class="item">
-    <!-- <div class="imgbox">
-      <img v-if="item.content.firstImage" :src="item.content.firstImage" alt="사진" />
-      <img v-else src="@/assets/logo0.svg" alt="사진" />
-    </div> -->
-
-    <div class="item-info">
+    <div class="title">
       {{ item.content.title }}
-      <p>{{ item.memo }}</p>
-      <p>{{ item.cost }}</p>
+    </div>
+    <div class="content-box">
+      <div class="content">
+        <p>메모 : {{ item.memo }}</p>
+        <p>예산 : {{ item.cost }}</p>
+      </div>
+      <div class="btn-box">
+        <button @click="">수정</button>
+        <button @click="deletePlanItem(key)">삭제</button>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .item {
-  display: flex;
-  flex-direction: row;
   margin: 5px;
-
-  height: 90px;
+  height: 120px;
   background-color: white;
   border-radius: 10px;
 }
-#imgbox {
-  margin-left: 10px;
-  margin-top: 20px;
-}
-img {
-  width: 50px;
-  height: 50px;
-}
-.item-info {
-  margin: 10px 10px 0px 10px;
-  font-weight: bold;
+.title {
+  width: 100%;
   color: var(--main-color);
+  font-weight: bold;
+  font-size: 18px;
+  padding: 5px;
+  border-bottom: 1px solid var(--main-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.content-box {
+  height: 80%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+
+  margin-left: 1rem;
+  padding: 5px;
+}
+.content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  color: var(--main-color);
+
+  font-size: 14px;
+  padding: 5px;
+}
+
+.btn-box {
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+}
+button {
+  width: 100%;
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
+  background-color: white;
+  color: var(--main-color);
+  font-weight: bold;
 }
 </style>

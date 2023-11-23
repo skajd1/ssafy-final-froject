@@ -20,4 +20,6 @@ public interface PlanMapper {
 
 	int insertPlanDetail(PlanDetail pd);
 
+	int deletePlan(int parseInt);
+
 }

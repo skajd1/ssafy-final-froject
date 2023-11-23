@@ -11,5 +11,8 @@ function makePlan(uid, title, success, fail) {
 function insertPlanItems(pid, params, success, fail) {
   myaxios.post(`/plandetails/${pid}`, params).then(success).catch(fail);
 }
+function deletePlanItem(pid, success, fail) {
+  myaxios.delete(`/plan/${pid}`).then(success).catch(fail);
+}
 
-export { getMyPlans, getPlanItems, makePlan, insertPlanItems };
+export { getMyPlans, getPlanItems, makePlan, insertPlanItems, deletePlanItem };

@@ -17,4 +17,6 @@ public interface PlanService {
 
 		int insertPlanDetail(PlanDetail pd, String pid);
 
+		int deletePlanByPid(String pid);
+
 }

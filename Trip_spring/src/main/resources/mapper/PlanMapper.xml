@@ -13,11 +13,13 @@
 	</select>
 	<insert id = "insertPlanByUid" parameterType = "Plan" useGeneratedKeys="true" keyProperty="pid">
 		insert into plan (title, uid) values (#{title} ,#{uid})
-		
 	</insert>
 	<insert id = "insertPlanDetail" parameterType = "PlanDetail">
 		insert into planitem (cost, date, comment, pid, content_id) values (#{cost},#{date},#{comment},#{pid},#{content_id})
 	</insert>
+	<delete id = "deletePlan" parameterType="int">
+		delete from plan where pid = #{pid}
+	</delete>
 
 	
 

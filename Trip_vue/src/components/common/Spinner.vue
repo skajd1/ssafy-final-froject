@@ -1,14 +1,17 @@
-<script setup>
-defineProps({
-  loading: Boolean,
-});
-const src = "@/assets/loading.gif";
-</script>
+<script setup></script>
 
 <template>
   <div>
-    <img v-if="loading" :src="src" alt="loading" />
+    <img src="@/assets/logo0.svg" alt="loading" />
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+</style>

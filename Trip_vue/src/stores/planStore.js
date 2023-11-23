@@ -40,7 +40,7 @@ const usePlanStore = defineStore("usePlanStore", () => {
   const insert = computed(() => insertItems.value);
 
   // 여행지 추가
-  const id = ref(1);
+  const id = ref(0);
   const plandetail = reactive([]); // { date, cost, memo }
 
   const addPlanItem = ([date, cost, memo, content]) => {
