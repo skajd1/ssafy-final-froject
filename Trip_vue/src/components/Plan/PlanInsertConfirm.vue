@@ -2,9 +2,11 @@
 import { usePlanStore } from "@/stores/planStore";
 import { storeToRefs } from "pinia";
 import { useUserStore } from "@/stores/userStore";
+import { makePlan, insertPlanItems } from "@/api/PlanApi";
+import { ref } from "vue";
 const planStore = usePlanStore();
 const userStore = useUserStore();
-const { makePlanTable } = planStore;
+const { tmpItems } = storeToRefs(planStore);
 const { user } = storeToRefs(userStore);
 const emit = defineEmits(["closeModal"]);
 
@@ -12,9 +14,40 @@ const title = ref("");
 const pid = ref("");
 function insert() {
   closeModal();
-  console.log("insert시작");
-  pid.value = makePlanTable(user.uid, title);
+  pid.value = makePlan(
+    user.value.uid,
+    title.value,
+    (res) => {
+      pid.value = res.data;
+      tmpItems.value.forEach((item, index) => {
+        let params = {
+          pid: pid.value,
+          date: item.date,
+          cost: item.cost,
+          comment: item.memo,
+          content_id: item.content.contentId,
+        };
+        console.log(params);
+        insertPlanItems(
+          pid.value,
+          params,
+          () => {
+            console.log(`여행지${index} 등록 성공`);
+          },
+          (e) => {
+            console.log(e);
+          }
+        );
+      });
+      alert("일정이 등록되었습니다.");
+    },
+    (e) => {
+      console.log(e);
+      alert("일정 등록에 실패했습니다.");
+    }
+  );
 }
+
 function closeModal() {
   emit("closeModal");
 }

@@ -54,21 +54,6 @@ const usePlanStore = defineStore("usePlanStore", () => {
   const tmpItems = computed(() => plandetail);
 
   // 일정 테이블 생성
-  const makePlanTable = (uid, title) => {
-    let pid;
-    makePlan(
-      uid,
-      title,
-      (res) => {
-        console.log("생성된 pid :" + res.data);
-        pid = res.data;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-    return pid;
-  };
 
   return {
     allPlan,
@@ -80,7 +65,6 @@ const usePlanStore = defineStore("usePlanStore", () => {
 
     addPlanItem,
     deletePlanItem,
-    makePlanTable,
   };
 });
 

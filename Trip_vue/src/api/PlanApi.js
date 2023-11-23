@@ -8,8 +8,8 @@ function getPlanItems(pid, success, fail) {
 function makePlan(uid, title, success, fail) {
   myaxios.post(`/plan`, { uid: uid, title: title }).then(success).catch(fail);
 }
-function insertPlanItems(pid, items, success, fail) {
-  myaxios.post(`/plandetails/${pid}`).then(success).catch(fail);
+function insertPlanItems(pid, params, success, fail) {
+  myaxios.post(`/plandetails/${pid}`, params).then(success).catch(fail);
 }
 
 export { getMyPlans, getPlanItems, makePlan, insertPlanItems };

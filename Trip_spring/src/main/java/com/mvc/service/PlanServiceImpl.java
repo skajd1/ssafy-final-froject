@@ -32,7 +32,7 @@ public class PlanServiceImpl implements PlanService{
 	@Override
 	public int insertPlanByUid(Plan p) {
 		int res = mapper.insertPlanByUid(p);
-		System.out.println(p.getPid());
+		if(res == 1) return p.getPid();
 		return res;
 	}
 
@@ -40,6 +40,7 @@ public class PlanServiceImpl implements PlanService{
 	@Override
 	public int insertPlanDetail(PlanDetail pd, String pid) {
 		pd.setPid(Integer.parseInt(pid));
+		
 		return mapper.insertPlanDetail(pd);
 	}
 

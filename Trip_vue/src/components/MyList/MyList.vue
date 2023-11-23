@@ -3,11 +3,13 @@ import MyListItem from "@/components/MyList/MyListItem.vue";
 import { usePlanStore } from "@/stores/planStore";
 import { storeToRefs } from "pinia";
 import { ref, reactive } from "vue";
+import { useUserStore } from "@/stores/userStore";
 const store = usePlanStore();
 const { allPlan } = store;
 const { all: items } = storeToRefs(store);
-const uid = ref(1);
-allPlan(uid.value);
+const { user } = storeToRefs(useUserStore());
+
+allPlan(user.value.uid);
 </script>
 
 <template>
