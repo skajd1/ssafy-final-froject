@@ -51,7 +51,9 @@ const logout = () => {
   <div id="container">
     <h1>
       <span id="goMain" @click="goMain()">
+        <div style="font-size: 14px; margin-left: 600px; font-weight: bold">냐멍이</div>
         어디로 가냥?
+
         <img src="@/assets/logo1.svg" />
       </span>
     </h1>

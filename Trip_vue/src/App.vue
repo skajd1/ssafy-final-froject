@@ -4,7 +4,7 @@ import { useRoute } from "vue-router";
 import Header from "@/components/common/Header.vue";
 import spinner from "@/components/common/Spinner.vue";
 import { ref, watch } from "vue";
-import Footer from "./components/common/Footer.vue";
+import Footer from "@/components/common/Footer.vue";
 import { useUserStore } from "@/stores/userStore";
 import { storeToRefs } from "pinia";
 

@@ -41,7 +41,7 @@ onMounted(() => {
 const themelist = ref([
   { themeCode: "12", themeName: "관광지" },
   { themeCode: "14", themeName: "문화시설" },
-  { themeCode: "15", themeName: "축제공연행사" },
+  { themeCode: "15", themeName: "축제행사" },
   { themeCode: "25", themeName: "여행코스" },
   { themeCode: "28", themeName: "레포츠" },
   { themeCode: "32", themeName: "숙박" },
@@ -159,6 +159,7 @@ watch(
   justify-content: space-around;
   align-items: center;
   margin-bottom: 20px;
+  font-size: 10px;
 }
 .container {
   width: 100%;
