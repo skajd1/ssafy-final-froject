@@ -1,9 +1,11 @@
 package com.mvc.mapper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.mvc.vo.TripInfo;
 import com.mvc.vo.User;
 
 @Mapper
@@ -14,4 +16,5 @@ public interface UserMapper {
 	public int delete(String uid);
 	public int update(User u);
 	public User checkUser(String id, String pw);
+	
 }

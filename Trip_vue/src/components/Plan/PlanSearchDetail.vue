@@ -72,34 +72,6 @@ watch(
   },
   { deep: true }
 );
-
-// function search() {
-//   if (chooseSido.value === "") {
-//     alert("시/도를 선택하세요");
-//     return;
-//   }
-//   if (chooseGugun.value === "") {
-//     alert("구/군을 선택하세요");
-//     return;
-//   }
-//   if (chooseThema.value.length === 0) {
-//     alert("테마를 선택하세요");
-//     return;
-//   }
-//   console.log(chooseSido.value);
-//   console.log(chooseGugun.value);
-//   console.log(chooseThema.value);
-
-//   // 시도, 구군, 테마 코드에 맞는 관광지 리스트 가져오기
-//   // -> keyword는 null이여도 그냥 ''로 넘겨도 된다.
-//   // null이 아니면 where절에 동적 쿼리로 추가하기.
-
-//   sido.value = chooseSido.value;
-//   gugun.value = chooseGugun.value;
-//   thema.value = chooseThema.value;
-
-//   getTripList();
-// }
 </script>
 
 <template>

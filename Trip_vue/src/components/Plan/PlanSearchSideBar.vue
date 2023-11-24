@@ -2,7 +2,21 @@
 import PlanSearchDetail from "@/components/Plan/PlanSearchDetail.vue";
 import PlanSearchList from "@/components/Plan/PlanSearchList.vue";
 import PlanSearchBar from "@/components/Plan/PlanSearchBar.vue";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useUserStore } from "@/stores/userStore";
+import { useTripStore } from "@/stores/tripStore";
+import { storeToRefs } from "pinia";
+
+const userStore = useUserStore();
+const tripStore = useTripStore();
+const { user } = storeToRefs(userStore);
+const uid = user.value.uid;
+
+const { getLikeListInfo } = tripStore;
+
+onMounted(() => {
+  getLikeListInfo(uid);
+});
 
 const is_expanded = ref(false);
 
@@ -86,7 +100,7 @@ aside {
 
   .menu {
     opacity: 0;
-    width: 300px;
+    width: 330px;
     margin: 0 auto;
   }
 

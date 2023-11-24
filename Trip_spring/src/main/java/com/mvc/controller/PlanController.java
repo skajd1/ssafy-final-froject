@@ -30,6 +30,7 @@ public class PlanController {
 	public ArrayList<PlanDetail> getPlanDetail(@PathVariable String pid) {
 		return service.selectItem(pid);
 	}
+	
 	@ApiOperation(value = "유저 일정 조회",notes = "특정 유저가 작성한 모든 Plan 조회")
 	@GetMapping("/plan/{uid}")
 	public ArrayList<Plan> getPlanByUId(@PathVariable String uid) {
@@ -55,5 +56,4 @@ public class PlanController {
 		if(res == 1) return "추가 완료";
 		return "추가 실패 . . . ";
 	}
-
 }

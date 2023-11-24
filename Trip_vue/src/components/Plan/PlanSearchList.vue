@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, reactive } from "vue";
+import { ref, watch, reactive, onMounted } from "vue";
 import item from "@/components/Plan/PlanSearchListItem.vue";
 import { useTripStore } from "@/stores/tripStore";
 import { storeToRefs } from "pinia";
@@ -21,12 +21,16 @@ watch(lists, () => {
   trips_copied.value = lists.value;
 });
 
+onMounted(() => {
+  lists.value = "";
+  // trips.value = lists.value;
+  // trips_copied.value = lists.value;
+});
+
 watch(
   searchData,
   () => {
-    loadingStart();
     getTripList();
-    loadingEnd();
   },
   { deep: true }
 );
@@ -68,7 +72,7 @@ const filterTripList = () => {
 <style lang="scss" scoped>
 .container {
   width: 300px;
-  height: 380px;
+  height: 420px;
 
   /* border: 1px solid var(--main-color); */
   border-radius: 10px;
@@ -86,7 +90,7 @@ const filterTripList = () => {
     margin: 1 auto;
     padding: 0;
     width: 100%;
-    height: 320px;
+    height: 360px;
   }
 
   ::-webkit-scrollbar {

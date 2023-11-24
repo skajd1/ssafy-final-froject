@@ -13,16 +13,25 @@ allPlan(user.value.uid);
 </script>
 
 <template>
-  <div>내 계획들 확인하는 뷰에용</div>
-  <div class="container">
-    <MyListItem v-for="item in items" :item="item" />
+  <div id="container">
+    <!-- <div>{{ item.title }}</div> -->
+    <MyListItem v-for="item in items" :item="item" class="planbox"></MyListItem>
   </div>
 </template>
 
-<style scoped>
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+<style lang="scss" scoped>
+#container {
+  /* background-color: var(--main-color-bg); */
+  margin: 10px auto;
+  min-height: 800px;
+  width: 85%;
+  border-radius: 10px;
+
+  display: grid;
+  grid-template-columns: 300px 300px 300px 300px 300px;
+  grid-auto-rows: minmax(280px, 280px);
+  gap: 20px;
+  row-gap: 80px;
+  padding: 20px;
 }
 </style>

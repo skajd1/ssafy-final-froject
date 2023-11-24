@@ -31,29 +31,76 @@ planItems(pid);
 </script>
 
 <template>
-  <h1>{{ title }}</h1>
+  <div class="mylistdetail">
+    <div id="top">
+      <div>
+        <h1 id="title">{{ title }}</h1>
+      </div>
 
-  <RouterLink :to="{ name: 'MyList' }">목록으로</RouterLink>
-  <button @click="Delete()">삭제</button>
-  <!-- 지도 -->
-  <div class="mapbox">
-    <VKaKaoMap></VKaKaoMap>
-  </div>
-  <!-- planitem에서 해당 pid를 갖고 있는 모든 item 정보 -->
-  <div class="timelinebox">
-    <TimeLine />
+      <div id="btn">
+        <button><RouterLink :to="{ name: 'MyList' }" class="offhover">목록으로</RouterLink></button>
+
+        <button @click="Delete()">삭제</button>
+      </div>
+    </div>
+
+    <!-- 지도 -->
+    <div class="mapbox">
+      <VKaKaoMap></VKaKaoMap>
+    </div>
+    <!-- planitem에서 해당 pid를 갖고 있는 모든 item 정보 -->
+    <div class="timelinebox">
+      <TimeLine />
+    </div>
   </div>
 </template>
 
-<style scoped>
-.mapbox {
-  width: 100%;
-  height: 470px;
-}
-.timelinebox {
-  padding: 10 auto;
-  width: 100%;
-  border: 1px solid black;
-  height: 280px;
+<style lang="scss" scoped>
+.mylistdetail {
+  #top {
+    display: flex;
+    justify-content: space-between;
+
+    #title {
+      color: var(--main-color);
+      font-size: 50px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    #btn {
+      display: flex;
+      flex-direction: row;
+      align-items: end;
+      padding-bottom: 10px;
+      font-size: 20px;
+
+      button {
+        margin-left: 10px;
+        background-color: transparent;
+        border: none;
+        color: var(--main-color);
+
+        .offhover {
+          &:hover {
+            color: var(--main-color);
+            text-decoration: none;
+          }
+        }
+
+        &:hover {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  .mapbox {
+    width: 100%;
+    height: 400px;
+  }
+
+  .timelinebox {
+    margin-bottom: 20px;
+  }
 }
 </style>

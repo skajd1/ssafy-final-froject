@@ -1,7 +1,7 @@
 import { ref, reactive, computed, watch } from "vue";
 import { defineStore } from "pinia";
 import { getTripInfoById } from "@/api/TripApi.js";
-import { getTripInfo } from "@/api/TripApi.js";
+import { getTripInfo, getLikeListInfoByUid } from "@/api/TripApi.js";
 
 const useTripStore = defineStore("useTripStore", () => {
   const tripItems = ref([]);
@@ -69,10 +69,32 @@ const useTripStore = defineStore("useTripStore", () => {
       }
     );
   };
-  const lists = computed(() => tripList.value);
+  const lists = computed({
+    get: () => tripList.value,
+    set: (value) => (tripList.value = value),
+  });
   const searchData = computed(() => searchdata);
 
+  const likelist = reactive([]);
+
+  const getLikeListInfo = (uid) => {
+    getLikeListInfoByUid(
+      uid,
+      (res) => {
+        likelist.value = res.data;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  };
+
+  const getlikelist = computed({
+    get: () => likelist.value,
+  });
+
   return {
+    getLikeListInfo,
     initTripItems,
     getTripItems,
     getTripList,
@@ -86,6 +108,7 @@ const useTripStore = defineStore("useTripStore", () => {
     themelist,
     theme,
     lists,
+    getlikelist,
   };
 });
 

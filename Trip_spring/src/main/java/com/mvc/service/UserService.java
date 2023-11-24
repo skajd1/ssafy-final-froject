@@ -1,7 +1,9 @@
 package com.mvc.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.mvc.vo.TripInfo;
 import com.mvc.vo.User;
 
 //Controller를 위한 인터페이스
@@ -13,4 +15,5 @@ public interface UserService {
 	public int insert(User u);
 	public int delete(String uid);
 	public int update(User u);
+	
 }

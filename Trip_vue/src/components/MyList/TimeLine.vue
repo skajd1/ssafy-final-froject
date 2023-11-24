@@ -30,11 +30,27 @@ watch(
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .itembox {
-  width: 100%;
-  height: 100%;
   display: flex;
+
+  width: 1000px;
+  height: 100%;
+
   overflow: auto;
+}
+
+::-webkit-scrollbar {
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--main-color-bg);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+  border-radius: 10px;
 }
 </style>

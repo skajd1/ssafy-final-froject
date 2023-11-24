@@ -40,7 +40,7 @@ const confirmInsert = () => {
   font-size: 2.5rem;
 
   font-weight: bold;
-  color: white;
+  color: var(--main-color);
   display: flex;
 
   justify-content: center;

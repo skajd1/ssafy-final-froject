@@ -18,5 +18,15 @@ function getTripInfoById(id, success, fail) {
 function getTripInfoByTitle(title, success, fail) {
   myaxios.get(`/trip/title/${title}`).then(success).catch(fail);
 }
+function getLikeListInfoByUid(uid, success, fail) {
+  myaxios.get(`/trip/likelist/${uid}`).then(success).catch(fail);
+}
 
-export { getGugun, getSido, getTripInfo, getTripInfoById, getTripInfoByTitle };
+export {
+  getGugun,
+  getSido,
+  getTripInfo,
+  getTripInfoById,
+  getTripInfoByTitle,
+  getLikeListInfoByUid,
+};

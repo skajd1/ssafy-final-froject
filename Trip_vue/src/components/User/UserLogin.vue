@@ -74,6 +74,16 @@ const userLogin = async () => {
     div {
       margin: 5px;
       margin-bottom: 10px;
+
+      input {
+        width: 100%;
+        height: 35px;
+        border: 1px solid var(--main-color);
+        padding: 5px;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+      }
     }
   }
 }

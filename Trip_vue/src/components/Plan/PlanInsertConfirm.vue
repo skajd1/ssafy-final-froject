@@ -21,6 +21,7 @@ function insert() {
   pid.value = makePlan(
     user.value.uid,
     title.value,
+    tmpItems.value[0].content.firstImage,
     (res) => {
       pid.value = res.data;
       tmpItems.value.forEach((item, index) => {

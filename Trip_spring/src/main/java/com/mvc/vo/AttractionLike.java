@@ -5,10 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Plan {
+public class AttractionLike {
 	private int pid;
-	private String title;
+	private int content_id;
 	private int uid;
-	private String thumbnail;
-
 }

@@ -23,6 +23,7 @@
 	<update id="update" parameterType="User">
 		update user set pw = #{pw} where id = #{id}
 	</update>
+	
 
 	
 

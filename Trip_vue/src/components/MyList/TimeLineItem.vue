@@ -31,26 +31,40 @@ setTimeout(() => {
 
 <template>
   <div class="timeline-item">
-    {{ planItem.date.split(" ")[0] }}
-    {{ title }}
+    <p>{{ planItem.date.split(" ")[0] }}</p>
+    <p style="font-weight: bold">{{ title }}</p>
+
     <img v-if="imgsrc" :src="imgsrc" @click="selectTrip" />
     <img v-else src="@/assets/logo0.svg" @click="selectTrip" />
 
-    {{ planItem.comment }}
+    <div class="memo-cost">
+      <p>{{ planItem.comment }}</p>
+      <p>{{ planItem.cost }}원</p>
+    </div>
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .timeline-item {
   margin: 10px;
   min-width: 320px;
   max-width: 320px;
 
-  border-radius: 10px;
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 .timeline-item img {
   width: 100%;
   height: 180px;
   border-radius: 10px;
+}
+
+.memo-cost {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
 }
 </style>

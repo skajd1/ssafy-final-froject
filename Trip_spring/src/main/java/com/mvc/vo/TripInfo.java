@@ -21,5 +21,6 @@ public class TripInfo {
 	private double latitude;
 	private double longitude;
 	private String mlevel;
+	private String overview;
 
 }

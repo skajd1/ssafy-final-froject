@@ -1,15 +1,30 @@
 <script setup>
 import listitem from "@/components/Main/ListItem.vue";
-const item = 30;
-// 임시 이미지
-const img = "https://picsum.photos/800/400?random=";
+import { getLikeListInfoByUid } from "@/api/TripApi";
+import { useUserStore } from "@/stores/userStore";
+import { ref } from "vue";
+import { storeToRefs } from "pinia";
+const userStore = useUserStore();
+const { user } = storeToRefs(userStore);
+const uid = user.value.uid;
+const items = ref([]);
+getLikeListInfoByUid(
+  uid,
+  (res) => {
+    console.log(123);
+    items.value = res.data;
+  },
+  (err) => {
+    console.log(err);
+  }
+);
 </script>
 
 <template>
   <div class="container">
     <h2>찜한 여행지</h2>
     <div class="itembox">
-      <listitem :img="img + i" v-for="i in item"></listitem>
+      <listitem v-for="item in items" :item="item"></listitem>
     </div>
   </div>
 </template>
@@ -29,5 +44,13 @@ const img = "https://picsum.photos/800/400?random=";
   display: flex;
   overflow: auto;
   white-space: nowrap;
+}
+::-webkit-scrollbar {
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+  border-radius: 10px;
 }
 </style>

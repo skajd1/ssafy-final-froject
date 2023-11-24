@@ -68,6 +68,8 @@ const useUserStore = defineStore(
     };
     const load = computed(() => isLoading.value);
     const user = computed(() => userInfo.value);
+    const uid = computed(() => userInfo.value.uid);
+
     return {
       login,
       logout,
@@ -75,6 +77,7 @@ const useUserStore = defineStore(
       userInfo,
       isLogin,
       user,
+      uid,
       load,
       loadingStart,
       loadingEnd,

@@ -1,11 +1,13 @@
 package com.mvc.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mvc.mapper.UserMapper;
+import com.mvc.vo.TripInfo;
 import com.mvc.vo.User;
 @Service
 public class UserServiceImpl implements UserService{
@@ -47,6 +49,7 @@ public class UserServiceImpl implements UserService{
 		if(res.size() > 1) return false;
 		return true;
 	}
+	
 
 
 	

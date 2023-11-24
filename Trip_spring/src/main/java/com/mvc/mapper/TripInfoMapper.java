@@ -20,4 +20,6 @@ public interface TripInfoMapper {
 	
 	List<TripInfo> getInfoById(String id);
 	List<TripInfo> getInfoBySidoGugunTitle(String sidoCode, String gugunCode, String keyword);
+	List<TripInfo> selectLikeListByUid(String uid);
+	
 }

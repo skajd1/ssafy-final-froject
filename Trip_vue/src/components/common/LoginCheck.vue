@@ -5,7 +5,7 @@ import { RouterLink } from "vue-router";
 import { useRouter } from "vue-router";
 const store = useUserStore();
 const router = useRouter();
-const { isLogin, userInfo } = storeToRefs(store);
+const { isLogin, user } = storeToRefs(store);
 // console.log(userInfo.value);
 
 const logout = () => {
@@ -26,6 +26,8 @@ const logout = () => {
       /></RouterLink>
     </div>
     <div v-else>
+      <span style="font-weight: bold">{{ user.nickname }}</span>
+      <span>님 환영하냥!!</span>
       <input type="button" class="logout-btn" value="마이페이지" />
       <input type="button" class="logout-btn" value="로그아웃" @click="logout()" />
     </div>
@@ -37,6 +39,10 @@ const logout = () => {
   display: flex;
   justify-content: flex-end;
   margin-right: 10px;
+}
+span {
+  margin-right: 5px;
+  color: var(--main-color);
 }
 
 .logout-btn {

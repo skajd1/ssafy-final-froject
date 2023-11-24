@@ -21,14 +21,13 @@ imgsrc.value = props.item.content.firstImage;
         <p>예산 : {{ item.cost }}</p>
       </div>
       <div class="btn-box">
-        <button @click="">수정</button>
         <button @click="deletePlanItem(key)">삭제</button>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .item {
   margin: 5px;
   height: 120px;
@@ -50,11 +49,10 @@ imgsrc.value = props.item.content.firstImage;
   height: 80%;
   display: flex;
   justify-content: space-between;
-  text-align: center;
-
   margin-left: 1rem;
   padding: 5px;
 }
+
 .content {
   height: 100%;
   display: flex;

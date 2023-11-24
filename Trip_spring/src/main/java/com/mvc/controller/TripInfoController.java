@@ -22,9 +22,9 @@ import io.swagger.annotations.ApiOperation;
 
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/trip")
 @Api(value="SSAFY")
-@CrossOrigin("*")
 public class TripInfoController {
 	@Autowired
 	TripInfoService service;
@@ -79,5 +79,9 @@ public class TripInfoController {
 	@GetMapping("/list/{content_id}")
 	public List<TripInfo> searchById(@PathVariable("content_id") String id){
 		return service.searchById(id);
+	}
+	@GetMapping(value = "/likelist/{uid}")
+	public List<TripInfo> getLikeList(@PathVariable String uid){
+		return service.getLikeList(uid);
 	}
 }

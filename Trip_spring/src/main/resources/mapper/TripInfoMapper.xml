@@ -22,6 +22,7 @@
 		<if test = "gugunCode != ''">
 			and gugun_code = #{gugunCode}
 		</if>
+		limit 100
 		
     </select>
     
@@ -42,6 +43,11 @@
 	
 	<select id="searchTitle" resultType="TripInfo" parameterType="String">
 		select * from attraction_info where title like concat('%',#{word},'%')
+	</select>
+	
+	<select id = "selectLikeListByUid" parameterType = "String" resultType = "TripInfo">
+		select * from attraction_info a where a.content_id in
+			(select l.content_id from a_like l where uid = #{uid});
 	</select>
 	
 </mapper>
